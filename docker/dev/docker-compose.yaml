@@ -1,0 +1,34 @@
+version: '3'
+
+networks:
+  mongodb_network:
+    driver: bridge
+  api_network:
+    driver: bridge
+
+services:
+  mongodb:
+    image: mongo:3.4
+    container_name: MongoDB
+    networks:
+      - mongodb_network
+
+  api-server:
+    image: claclacla/api-server
+    container_name: APIServer
+    networks:
+      - mongodb_network
+      - api_network
+    ports:
+      - "3000:3000"
+    volumes:
+      - "${APP_FOLDER}:/usr/src/app"
+
+  dev-machine:
+    build: ./dev-machine
+    image: claclacla/dev-machine
+    container_name: DEVMachine
+    networks:
+      - api_network
+    volumes:
+      - "${APP_FOLDER}:/usr/src/app"
