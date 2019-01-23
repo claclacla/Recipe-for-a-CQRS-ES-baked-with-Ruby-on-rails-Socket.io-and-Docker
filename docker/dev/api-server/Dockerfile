@@ -7,6 +7,5 @@ RUN bundle install
 
 WORKDIR /usr/src/app/microservices/api-server
 
-CMD rm tmp/pids/server.pid \
-  && rake db:seed \
+CMD rake db:seed \
   && rails s
