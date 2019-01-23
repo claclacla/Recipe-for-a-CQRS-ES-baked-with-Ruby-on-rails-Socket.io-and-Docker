@@ -23,7 +23,6 @@ class OrdersController < ApplicationController
 
   # POST /orders
   def create
-    puts ">>>>>>>>>>>>>>> create"
     order_params
     # orderEntity = {
     #   products: order_params["products"]
@@ -64,6 +63,6 @@ class OrdersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def order_params
-      params.require(:order).permit(:number, :date, {products: [:name, :price]})
+      params.require(:order).permit(products: [:uid, :amount])
     end
 end
