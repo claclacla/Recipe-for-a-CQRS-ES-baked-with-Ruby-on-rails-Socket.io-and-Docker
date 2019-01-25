@@ -151,8 +151,8 @@ docker-compose 1.19.0+
 # Move to the main application folder
 cd /path-to-your-local/app
 
-# Build the api-server image
-sudo docker build -f docker/dev/api-server/Dockerfile . -t claclacla/api-server
+# Build the order api-server image
+sudo docker build --build-arg MICROSERVICE_COMPONENT=order -f docker/dev/api-server/Dockerfile . -t claclacla/order-api-server
 
 # Change the directory to the docker development 
 cd docker/dev
