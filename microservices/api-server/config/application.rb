@@ -32,7 +32,12 @@ module ApiServer
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-    #config.autoload_paths += %W(#{config.root}/lib/repositories)
+    # Add the lib folder to the application modules paths
+
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
+
+    # Raise an exception on action controllers unpermitted parameters
+
+    config.action_controller.action_on_unpermitted_parameters = :raise
   end
 end
