@@ -13,6 +13,9 @@ describe "Place an order" do
 
   context "when the order contains valid products" do
     it "should place a new order" do
+
+      # Get products list
+
       response = @connection.get "/products"
       products = response.body
   
@@ -21,13 +24,17 @@ describe "Place an order" do
       product = products[0]
       productUid = product["uid"]
   
+      # Place the order
+
       response = @connection.post '/orders', { "order": 
         { "products": [ 
           { "uid": productUid, "amount": 4 } 
         ] } 
       }
+
+      # Expected status: 202 Accepted
   
-      puts response.body
+      expect(response.status).to be == 202
     end
   end
 end

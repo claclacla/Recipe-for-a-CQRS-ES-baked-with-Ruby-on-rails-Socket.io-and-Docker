@@ -3,6 +3,9 @@ class OrdersController < ApplicationController
 
   include Repositories::Mongoid
 
+  rescue_from ActionController::ParameterMissing, with: :bad_request_response
+  rescue_from ActionController::UnpermittedParameters, with: :bad_request_response
+
   def initialize 
     @orderRepository = Mongoid::OrderRepository.new
   end
@@ -23,22 +26,9 @@ class OrdersController < ApplicationController
 
   # POST /orders
   def create
-    order_params
-    # orderEntity = {
-    #   products: order_params["products"]
-    # }
+    orderParam = order_params
 
-    # @orderRepository.add(orderEntity: orderEntity)
-
-=begin
-    @order = Order.new(order_params)
-
-    if @order.save
-      render json: @order, status: :created, location: @order
-    else
-      render json: @order.errors, status: :unprocessable_entity
-    end
-=end
+    render :nothing => true, status: :accepted
   end
 
   # PATCH/PUT /orders/1
@@ -57,12 +47,16 @@ class OrdersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_order
-      @order = Order.find(params[:id])
-    end
+    #def set_order
+    #  @order = Order.find(params[:id])
+    #end
 
     # Only allow a trusted parameter "white list" through.
     def order_params
-      params.require(:order).permit(products: [:uid, :amount])
+      params.require(:order).permit(:products => [:uid, :amount])
+    end
+
+    def bad_request_response
+      render :nothing => true, :status => :bad_request
     end
 end
