@@ -5,6 +5,8 @@ networks:
     driver: bridge
   mongodb_network:
     driver: bridge
+  api_gateway_network:
+    driver: bridge
   api_network:
     driver: bridge
 
@@ -15,8 +17,6 @@ services:
     container_name: RabbitMQ
     networks:
       - rabbitmq_network
-    ports:
-      - "5672:5672"
 
   mongodb:
     image: mongo:3.4
@@ -30,11 +30,23 @@ services:
     networks:
       - rabbitmq_network
       - mongodb_network
-      - api_network
+      - api_gateway_network
     ports:
       - "3000:3000"
     volumes:
       - "${APP_FOLDER}:/usr/src/app"
+
+  api-gateway:
+    build: ./api-gateway
+    image: claclacla/api-gateway
+    container_name: APIGateway
+    networks:
+      - api_gateway_network
+      - api_network
+    ports:
+      - "80:80"
+    volumes:
+      - "${APP_FOLDER}/docker/dev/api-gateway/conf.d:/etc/nginx/conf.d"
 
   dev-machine:
     build: ./dev-machine

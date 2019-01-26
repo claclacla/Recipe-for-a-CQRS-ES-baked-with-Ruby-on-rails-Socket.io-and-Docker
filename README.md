@@ -167,7 +167,7 @@ sudo docker-compose up -d
 
 # Open your browser and type the following address
 # to connect to the client application
-http://localhost:8080
+http://localhost:80
 
 ```
 
