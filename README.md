@@ -151,8 +151,9 @@ docker-compose 1.19.0+
 # Move to the main application folder
 cd /path-to-your-local/app
 
-# Build the order api-server image
-sudo docker build --build-arg MICROSERVICE_COMPONENT=order -f docker/dev/api-server/Dockerfile . -t claclacla/order-api-server
+# Build the order api-server images
+sudo docker build --build-arg MICROSERVICE_COMPONENT=orders -f docker/dev/api-server/Dockerfile . -t claclacla/orders-api-server
+sudo docker build --build-arg MICROSERVICE_COMPONENT=products -f docker/dev/api-server/Dockerfile . -t claclacla/products-api-server
 
 # Change the directory to the docker development 
 cd docker/dev
@@ -165,17 +166,13 @@ sudo docker-compose up -d
 
 # During this operation the database will be seeded with the api server db seeds
 
-# Open your browser and type the following address
-# to connect to the client application
-http://localhost:80
-
 ```
 
 #### Docker services
 
 ```
-# Order API
-Port: 3000
+# API server
+Port: 80
 
 ```
 

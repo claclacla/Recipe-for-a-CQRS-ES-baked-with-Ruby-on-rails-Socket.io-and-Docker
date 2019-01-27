@@ -24,15 +24,23 @@ services:
     networks:
       - mongodb_network
 
-  order-api-server:
-    image: claclacla/order-api-server
-    container_name: OrderAPIServer
+  orders-api-server:
+    image: claclacla/orders-api-server
+    container_name: OrdersAPIServer
     networks:
       - rabbitmq_network
       - mongodb_network
       - api_gateway_network
-    ports:
-      - "3000:3000"
+    volumes:
+      - "${APP_FOLDER}:/usr/src/app"
+
+  products-api-server:
+    image: claclacla/products-api-server
+    container_name: ProductsAPIServer
+    networks:
+      - rabbitmq_network
+      - mongodb_network
+      - api_gateway_network
     volumes:
       - "${APP_FOLDER}:/usr/src/app"
 

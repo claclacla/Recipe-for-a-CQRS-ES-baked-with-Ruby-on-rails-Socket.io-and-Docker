@@ -26,15 +26,15 @@ describe "Place an order" do
   
       # Place the order
 
-      # response = @connection.post '/orders', { "order": 
-      #   { "products": [ 
-      #     { "uid": productUid, "amount": 4 } 
-      #   ] } 
-      # }
+      response = @connection.post '/orders', { "order": 
+        { "products": [ 
+          { "uid": productUid, "amount": 4 } 
+        ] } 
+      }
 
-      # # Expected status: 202 Accepted
+      # Expected status: 202 Accepted
   
-      # expect(response.status).to be == 202
+      expect(response.status).to be == 202
     end
   end
 end
