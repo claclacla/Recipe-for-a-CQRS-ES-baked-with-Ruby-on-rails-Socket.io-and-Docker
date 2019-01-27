@@ -43,3 +43,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'mongoid', '~> 7.0.2'
 gem 'bson_ext'
 gem 'interface', '1.0.4'
+gem 'postcard_rb', '0.0.5'
