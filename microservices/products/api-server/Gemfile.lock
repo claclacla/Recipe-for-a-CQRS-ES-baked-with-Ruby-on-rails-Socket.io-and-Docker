@@ -147,6 +147,7 @@ DEPENDENCIES
   interface (= 1.0.4)
   listen (>= 3.0.5, < 3.2)
   mongoid (~> 7.0.2)
+  postcard_rb (= 0.0.5)
   puma (~> 3.11)
   rails (~> 5.2.2)
   spring

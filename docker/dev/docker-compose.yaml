@@ -24,6 +24,27 @@ services:
     networks:
       - mongodb_network
 
+  # Platform events
+
+  platform-events-scheduler:
+    build: ./ruby-microservice
+    image: claclacla/ruby-microservice
+    container_name: PlatformEventsScheduler
+    environment:
+      - MICROSERVICE_PATH=/usr/src/app/microservices/platform-events/scheduler/app.rb
+    networks:
+      - mongodb_network
+      - rabbitmq_network
+    volumes:
+      - "${APP_FOLDER}:/usr/src/app"
+    links:
+      - mongodb
+      - rabbitmq
+    tty: true
+    stdin_open: true
+
+  # Components
+
   orders-api-server:
     image: claclacla/orders-api-server
     container_name: OrdersAPIServer
@@ -55,6 +76,8 @@ services:
       - "80:80"
     volumes:
       - "${APP_FOLDER}/docker/dev/api-gateway/conf.d:/etc/nginx/conf.d"
+
+  # Dev machine
 
   dev-machine:
     build: ./dev-machine
