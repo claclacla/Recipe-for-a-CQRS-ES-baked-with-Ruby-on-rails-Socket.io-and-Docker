@@ -1,0 +1,15 @@
+{
+  "name": "cqrs-es",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Recipe for a CQRS + ES baked with Ruby on rails, Socket.io and Docker",
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "main": "app.js",
+  "dependencies": {
+    "mongoose": "5.2.2",
+    "postcard-js": "0.0.2",
+    "heapdump": "0.3.12"
+  }
+}

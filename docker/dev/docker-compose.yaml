@@ -27,11 +27,11 @@ services:
   # Platform events
 
   platform-events-scheduler:
-    build: ./ruby-microservice
-    image: claclacla/ruby-microservice
+    build: ./js-microservice
+    image: claclacla/js-microservice
     container_name: PlatformEventsScheduler
     environment:
-      - MICROSERVICE_PATH=/usr/src/app/microservices/platform-events/scheduler/app.rb
+      - MICROSERVICE_PATH=/usr/src/app/microservices/platform-events/scheduler/app.js
     networks:
       - mongodb_network
       - rabbitmq_network
