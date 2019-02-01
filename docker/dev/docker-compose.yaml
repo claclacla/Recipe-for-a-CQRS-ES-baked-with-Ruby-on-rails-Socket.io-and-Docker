@@ -46,24 +46,34 @@ services:
   # Components
 
   orders-api-server:
-    image: claclacla/orders-api-server
+    build: ./api-server
+    image: claclacla/api-server
     container_name: OrdersAPIServer
     networks:
       - rabbitmq_network
       - mongodb_network
       - api_gateway_network
     volumes:
-      - "${APP_FOLDER}:/usr/src/app"
+      - "${APP_FOLDER}/microservices/orders/api-server/app/controllers:/usr/src/app/app/controllers"
+      - "${APP_FOLDER}/microservices/orders/api-server/app/models:/usr/src/app/app/models"
+      - "${APP_FOLDER}/microservices/orders/api-server/config/routes.rb:/usr/src/app/config/routes.rb"
+      - "${APP_FOLDER}/microservices/orders/api-server/db:/usr/src/app/db"
+      - "${APP_FOLDER}/microservices/orders/api-server/lib:/usr/src/app/lib"
 
   products-api-server:
-    image: claclacla/products-api-server
+    build: ./api-server
+    image: claclacla/api-server
     container_name: ProductsAPIServer
     networks:
       - rabbitmq_network
       - mongodb_network
       - api_gateway_network
     volumes:
-      - "${APP_FOLDER}:/usr/src/app"
+      - "${APP_FOLDER}/microservices/products/api-server/app/controllers:/usr/src/app/app/controllers"
+      - "${APP_FOLDER}/microservices/products/api-server/app/models:/usr/src/app/app/models"
+      - "${APP_FOLDER}/microservices/products/api-server/config/routes.rb:/usr/src/app/config/routes.rb"
+      - "${APP_FOLDER}/microservices/products/api-server/db:/usr/src/app/db"
+      - "${APP_FOLDER}/microservices/products/api-server/lib:/usr/src/app/lib"
 
   api-gateway:
     build: ./api-gateway
