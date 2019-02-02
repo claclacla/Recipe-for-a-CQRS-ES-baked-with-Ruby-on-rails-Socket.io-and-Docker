@@ -1,0 +1,3 @@
+class MissingParameterError < RuntimeError
+
+end
