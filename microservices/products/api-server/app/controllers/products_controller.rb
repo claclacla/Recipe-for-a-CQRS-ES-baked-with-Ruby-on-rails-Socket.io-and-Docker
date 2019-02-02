@@ -1,9 +1,13 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :update, :destroy]
 
+  include MessageBrokers
+
   # GET /products
   def index
     @products = Product.all
+
+    MessageBrokers::Postcard.instance.send
 
     render json: @products
   end

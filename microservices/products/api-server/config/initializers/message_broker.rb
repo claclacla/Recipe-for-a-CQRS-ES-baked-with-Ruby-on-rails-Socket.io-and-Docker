@@ -1,0 +1,1 @@
+MessageBrokers::Postcard.instance.connect

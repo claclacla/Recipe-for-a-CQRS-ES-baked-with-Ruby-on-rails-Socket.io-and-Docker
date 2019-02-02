@@ -102,9 +102,10 @@ rails g scaffold order number:integer date:datetime products:array
 
 ### TODO
 
-* Use nginx as reverse proxy for the api gateway
-
 * Implement the active Mongoid approach for the objects/data relation
+
+* RabbitMQ
+    * Auto reconnect on disconnect
 
 * Ruby on rails:
     * Use a different "id" field than "_id" for retrieving documents

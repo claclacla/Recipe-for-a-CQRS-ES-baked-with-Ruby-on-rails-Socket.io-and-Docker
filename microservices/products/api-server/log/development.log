@@ -3990,3 +3990,162 @@ MONGODB | mongodb:27017 | dev.find | SUCCEEDED | 0.001s
 Completed 200 OK in 8ms (Views: 4.4ms)
 
 
+Started GET "/products" for 192.168.160.3 at 2019-02-02 07:51:19 +0000
+Processing by ProductsController#index as */*
+MONGODB | mongodb:27017 | dev.find | STARTED | {"find"=>"products", "filter"=>{}}
+MONGODB | mongodb:27017 | dev.find | SUCCEEDED | 0.000s
+Completed 200 OK in 6ms (Views: 1.7ms)
+
+
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyOpening topology=Unknown>
+MONGODB | Topology type 'unknown' initializing.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::ServerOpening address=mongodb:27017 topology=Unknown>
+MONGODB | Server mongodb:27017 initializing.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyChanged prev=Unknown new=Single>
+MONGODB | Topology type 'unknown' changed to type 'single'.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::ServerDescriptionChanged>
+MONGODB | Server description for mongodb:27017 changed from 'unknown' to 'standalone'.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyChanged prev=Single new=Single>
+MONGODB | There was a change in the members of the 'single' topology.
+MONGODB | mongodb:27017 | dev.delete | STARTED | {"delete"=>"products", "deletes"=>[{"q"=>{}, "limit"=>0}], "ordered"=>true}
+MONGODB | mongodb:27017 | dev.delete | SUCCEEDED | 0.001s
+MONGODB | mongodb:27017 | dev.insert | STARTED | {"insert"=>"products", "documents"=>[{"_id"=>BSON::ObjectId('5c55543c1e9f830008bf450e'), "uid"=>"1r4Yp0WrTlogt6h1", "name"=>"Product 1", "price"=>2.5}], "ordered"=>true}
+MONGODB | mongodb:27017 | dev.insert | SUCCEEDED | 0.000s
+MONGODB | mongodb:27017 | dev.insert | STARTED | {"insert"=>"products", "documents"=>[{"_id"=>BSON::ObjectId('5c55543c1e9f830008bf450f'), "uid"=>"erou29r83uroeiu2", "name"=>"Product 2", "price"=>7.5}], "ordered"=>true}
+MONGODB | mongodb:27017 | dev.insert | SUCCEEDED | 0.000s
+Started GET "/products" for 192.168.160.3 at 2019-02-02 08:30:06 +0000
+  
+TypeError (wrong argument type Class (expected Module)):
+  
+app/controllers/products_controller.rb:4:in `include'
+app/controllers/products_controller.rb:4:in `<class:ProductsController>'
+app/controllers/products_controller.rb:1:in `<main>'
+Started GET "/products" for 192.168.160.3 at 2019-02-02 08:31:01 +0000
+Processing by ProductsController#index as */*
+Completed 500 Internal Server Error in 6ms
+
+
+  
+ArgumentError (no method name given):
+  
+app/controllers/products_controller.rb:10:in `index'
+Started GET "/products" for 192.168.160.3 at 2019-02-02 08:33:09 +0000
+Processing by ProductsController#index as */*
+Completed 500 Internal Server Error in 6ms
+
+
+  
+NoMethodError (undefined method `connect' for MessageBrokers::Postcard:Class
+Did you mean?  concerning):
+  
+app/controllers/products_controller.rb:10:in `index'
+Started GET "/products" for 192.168.160.3 at 2019-02-02 08:33:52 +0000
+Processing by ProductsController#index as */*
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyOpening topology=Unknown>
+MONGODB | Topology type 'unknown' initializing.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::ServerOpening address=mongodb:27017 topology=Unknown>
+MONGODB | Server mongodb:27017 initializing.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyChanged prev=Unknown new=Single>
+MONGODB | Topology type 'unknown' changed to type 'single'.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::ServerDescriptionChanged>
+MONGODB | Server description for mongodb:27017 changed from 'unknown' to 'standalone'.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyChanged prev=Single new=Single>
+MONGODB | There was a change in the members of the 'single' topology.
+MONGODB | mongodb:27017 | dev.find | STARTED | {"find"=>"products", "filter"=>{}}
+MONGODB | mongodb:27017 | dev.find | SUCCEEDED | 0.001s
+Completed 200 OK in 14ms (Views: 8.3ms)
+
+
+Started GET "/products" for 192.168.160.3 at 2019-02-02 08:34:31 +0000
+Processing by ProductsController#index as */*
+MONGODB | mongodb:27017 | dev.find | STARTED | {"find"=>"products", "filter"=>{}}
+MONGODB | mongodb:27017 | dev.find | SUCCEEDED | 0.000s
+Completed 200 OK in 7ms (Views: 1.6ms)
+
+
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyOpening topology=Unknown>
+MONGODB | Topology type 'unknown' initializing.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::ServerOpening address=mongodb:27017 topology=Unknown>
+MONGODB | Server mongodb:27017 initializing.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyChanged prev=Unknown new=Single>
+MONGODB | Topology type 'unknown' changed to type 'single'.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::ServerDescriptionChanged>
+MONGODB | Server description for mongodb:27017 changed from 'unknown' to 'standalone'.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyChanged prev=Single new=Single>
+MONGODB | There was a change in the members of the 'single' topology.
+MONGODB | mongodb:27017 | dev.delete | STARTED | {"delete"=>"products", "deletes"=>[{"q"=>{}, "limit"=>0}], "ordered"=>true}
+MONGODB | mongodb:27017 | dev.delete | SUCCEEDED | 0.001s
+MONGODB | mongodb:27017 | dev.insert | STARTED | {"insert"=>"products", "documents"=>[{"_id"=>BSON::ObjectId('5c55562d1e9f83000ad8694b'), "uid"=>"1r4Yp0WrTlogt6h1", "name"=>"Product 1", "price"=>2.5}], "ordered"=>true}
+MONGODB | mongodb:27017 | dev.insert | SUCCEEDED | 0.000s
+MONGODB | mongodb:27017 | dev.insert | STARTED | {"insert"=>"products", "documents"=>[{"_id"=>BSON::ObjectId('5c55562d1e9f83000ad8694c'), "uid"=>"erou29r83uroeiu2", "name"=>"Product 2", "price"=>7.5}], "ordered"=>true}
+MONGODB | mongodb:27017 | dev.insert | SUCCEEDED | 0.000s
+Started GET "/products" for 192.168.160.3 at 2019-02-02 08:34:59 +0000
+Processing by ProductsController#index as */*
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyOpening topology=Unknown>
+MONGODB | Topology type 'unknown' initializing.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::ServerOpening address=mongodb:27017 topology=Unknown>
+MONGODB | Server mongodb:27017 initializing.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyChanged prev=Unknown new=Single>
+MONGODB | Topology type 'unknown' changed to type 'single'.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::ServerDescriptionChanged>
+MONGODB | Server description for mongodb:27017 changed from 'unknown' to 'standalone'.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyChanged prev=Single new=Single>
+MONGODB | There was a change in the members of the 'single' topology.
+MONGODB | mongodb:27017 | dev.find | STARTED | {"find"=>"products", "filter"=>{}}
+MONGODB | mongodb:27017 | dev.find | SUCCEEDED | 0.002s
+Completed 200 OK in 18ms (Views: 13.2ms)
+
+
+Started GET "/products" for 192.168.160.3 at 2019-02-02 08:35:09 +0000
+Processing by ProductsController#index as */*
+MONGODB | mongodb:27017 | dev.find | STARTED | {"find"=>"products", "filter"=>{}}
+MONGODB | mongodb:27017 | dev.find | SUCCEEDED | 0.001s
+Completed 200 OK in 3ms (Views: 2.5ms)
+
+
+Started GET "/products" for 192.168.160.3 at 2019-02-02 08:42:29 +0000
+Processing by ProductsController#index as */*
+Completed 500 Internal Server Error in 8ms
+
+
+  
+LoadError (cannot load such file -- bunny):
+  
+lib/message_brokers/postcard.rb:5:in `<main>'
+app/controllers/products_controller.rb:10:in `index'
+MONGODB | EOFError: end of file reached
+MONGODB | EVENT: #<Mongo::Monitoring::Event::ServerDescriptionChanged>
+MONGODB | Server description for mongodb:27017 changed from 'standalone' to 'unknown'.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyOpening topology=Unknown>
+MONGODB | Topology type 'unknown' initializing.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::ServerOpening address=mongodb:27017 topology=Unknown>
+MONGODB | Server mongodb:27017 initializing.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyChanged prev=Unknown new=Single>
+MONGODB | Topology type 'unknown' changed to type 'single'.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::ServerDescriptionChanged>
+MONGODB | Server description for mongodb:27017 changed from 'unknown' to 'standalone'.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyChanged prev=Single new=Single>
+MONGODB | There was a change in the members of the 'single' topology.
+MONGODB | mongodb:27017 | dev.delete | STARTED | {"delete"=>"products", "deletes"=>[{"q"=>{}, "limit"=>0}], "ordered"=>true}
+MONGODB | mongodb:27017 | dev.delete | SUCCEEDED | 0.001s
+MONGODB | mongodb:27017 | dev.insert | STARTED | {"insert"=>"products", "documents"=>[{"_id"=>BSON::ObjectId('5c5585e2943ba300100c9d17'), "uid"=>"1r4Yp0WrTlogt6h1", "name"=>"Product 1", "price"=>2.5}], "ordered"=>true}
+MONGODB | mongodb:27017 | dev.insert | SUCCEEDED | 1.648s
+MONGODB | mongodb:27017 | dev.insert | STARTED | {"insert"=>"products", "documents"=>[{"_id"=>BSON::ObjectId('5c5585e4943ba300100c9d18'), "uid"=>"erou29r83uroeiu2", "name"=>"Product 2", "price"=>7.5}], "ordered"=>true}
+MONGODB | mongodb:27017 | dev.insert | SUCCEEDED | 0.002s
+Started GET "/products" for 172.22.0.2 at 2019-02-02 11:58:49 +0000
+Processing by ProductsController#index as */*
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyOpening topology=Unknown>
+MONGODB | Topology type 'unknown' initializing.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::ServerOpening address=mongodb:27017 topology=Unknown>
+MONGODB | Server mongodb:27017 initializing.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyChanged prev=Unknown new=Single>
+MONGODB | Topology type 'unknown' changed to type 'single'.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::ServerDescriptionChanged>
+MONGODB | Server description for mongodb:27017 changed from 'unknown' to 'standalone'.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyChanged prev=Single new=Single>
+MONGODB | There was a change in the members of the 'single' topology.
+MONGODB | mongodb:27017 | dev.find | STARTED | {"find"=>"products", "filter"=>{}}
+MONGODB | mongodb:27017 | dev.find | SUCCEEDED | 0.001s
+Completed 200 OK in 11ms (Views: 4.7ms)
+
+
