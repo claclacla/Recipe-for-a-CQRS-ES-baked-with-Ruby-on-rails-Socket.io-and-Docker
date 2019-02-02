@@ -1,4 +1,3 @@
-const PubSub = require("pubsub-js");
 const heapdump = require("heapdump");
 
 const printExecutionTime = require("../../../js/lib/printExecutionTime");
@@ -25,7 +24,7 @@ const Routing = require('postcard-js/Routing');
   }
 
   let platformEventsSchedulerTopic = postcard.createTopic({ name: "platform-events-scheduler", routing: Routing.Explicit });
-  let platformEventsSchedulerTopic = null;
+  let onPlatformEventSchedule = null;
 
   printExecutionTime();
 
