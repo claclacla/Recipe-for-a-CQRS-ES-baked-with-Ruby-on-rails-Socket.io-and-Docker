@@ -151,9 +151,9 @@ docker-compose 1.19.0+
 # Move to the main application folder
 cd /path-to-your-local/app
 
-# Build the order api-server images
-sudo docker build --build-arg MICROSERVICE_COMPONENT=orders -f docker/dev/api-server/Dockerfile . -t claclacla/orders-api-server
-sudo docker build --build-arg MICROSERVICE_COMPONENT=products -f docker/dev/api-server/Dockerfile . -t claclacla/products-api-server
+# Products api server is used for experimentation with ruby on rails.
+# Build it with the ruby-on-rails-experimental image
+sudo docker build --build-arg MICROSERVICE_COMPONENT=products -f docker/dev/ruby-on-rails-exp/Dockerfile . -t claclacla/products-api-server
 
 # Change the directory to the docker development 
 cd docker/dev
