@@ -1,1 +1,1 @@
-MessageBroker.instance.connect(host: "rabbitmqqqqq")
+MessageBroker.instance.connect(host: "rabbitmq")
