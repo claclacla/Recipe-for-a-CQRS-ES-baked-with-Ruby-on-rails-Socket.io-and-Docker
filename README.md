@@ -117,6 +117,7 @@ rails g scaffold order number:integer date:datetime products:array
     * CORS
     * File upload using AWS S3
     * Add a more complex API payload object
+    * Add a config file(The rabbitmq address is statically written on message_broker.rb file)
 
 * Web sockets:
     * requests parameters and payloads parsers

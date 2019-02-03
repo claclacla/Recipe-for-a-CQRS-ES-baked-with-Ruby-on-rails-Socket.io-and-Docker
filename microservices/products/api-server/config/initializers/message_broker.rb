@@ -1,1 +1,1 @@
-MessageBrokers::Postcard.instance.connect
+MessageBrokers::Postcard.instance.connect(host: "rabbitmq")

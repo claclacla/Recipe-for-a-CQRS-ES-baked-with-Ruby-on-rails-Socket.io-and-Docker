@@ -1,3 +1,0 @@
-class DatabaseError < RuntimeError
-
-end

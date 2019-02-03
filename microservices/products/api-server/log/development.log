@@ -4149,3 +4149,85 @@ MONGODB | mongodb:27017 | dev.find | SUCCEEDED | 0.001s
 Completed 200 OK in 11ms (Views: 4.7ms)
 
 
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyOpening topology=Unknown>
+MONGODB | Topology type 'unknown' initializing.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::ServerOpening address=mongodb:27017 topology=Unknown>
+MONGODB | Server mongodb:27017 initializing.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyChanged prev=Unknown new=Single>
+MONGODB | Topology type 'unknown' changed to type 'single'.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::ServerDescriptionChanged>
+MONGODB | Server description for mongodb:27017 changed from 'unknown' to 'standalone'.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyChanged prev=Single new=Single>
+MONGODB | There was a change in the members of the 'single' topology.
+MONGODB | mongodb:27017 | dev.delete | STARTED | {"delete"=>"products", "deletes"=>[{"q"=>{}, "limit"=>0}], "ordered"=>true}
+MONGODB | mongodb:27017 | dev.delete | SUCCEEDED | 0.001s
+MONGODB | mongodb:27017 | dev.insert | STARTED | {"insert"=>"products", "documents"=>[{"_id"=>BSON::ObjectId('5c558cb8943ba30009ea305c'), "uid"=>"1r4Yp0WrTlogt6h1", "name"=>"Product 1", "price"=>2.5}], "ordered"=>true}
+MONGODB | mongodb:27017 | dev.insert | SUCCEEDED | 0.000s
+MONGODB | mongodb:27017 | dev.insert | STARTED | {"insert"=>"products", "documents"=>[{"_id"=>BSON::ObjectId('5c558cb8943ba30009ea305d'), "uid"=>"erou29r83uroeiu2", "name"=>"Product 2", "price"=>7.5}], "ordered"=>true}
+MONGODB | mongodb:27017 | dev.insert | SUCCEEDED | 0.000s
+Started GET "/products" for 172.22.0.2 at 2019-02-02 12:28:01 +0000
+Processing by ProductsController#index as */*
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyOpening topology=Unknown>
+MONGODB | Topology type 'unknown' initializing.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::ServerOpening address=mongodb:27017 topology=Unknown>
+MONGODB | Server mongodb:27017 initializing.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyChanged prev=Unknown new=Single>
+MONGODB | Topology type 'unknown' changed to type 'single'.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::ServerDescriptionChanged>
+MONGODB | Server description for mongodb:27017 changed from 'unknown' to 'standalone'.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyChanged prev=Single new=Single>
+MONGODB | There was a change in the members of the 'single' topology.
+MONGODB | mongodb:27017 | dev.find | STARTED | {"find"=>"products", "filter"=>{}}
+MONGODB | mongodb:27017 | dev.find | SUCCEEDED | 0.001s
+Completed 200 OK in 12ms (Views: 5.2ms)
+
+
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyOpening topology=Unknown>
+MONGODB | Topology type 'unknown' initializing.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::ServerOpening address=mongodb:27017 topology=Unknown>
+MONGODB | Server mongodb:27017 initializing.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyChanged prev=Unknown new=Single>
+MONGODB | Topology type 'unknown' changed to type 'single'.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::ServerDescriptionChanged>
+MONGODB | Server description for mongodb:27017 changed from 'unknown' to 'standalone'.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyChanged prev=Single new=Single>
+MONGODB | There was a change in the members of the 'single' topology.
+MONGODB | mongodb:27017 | dev.delete | STARTED | {"delete"=>"products", "deletes"=>[{"q"=>{}, "limit"=>0}], "ordered"=>true}
+MONGODB | mongodb:27017 | dev.delete | SUCCEEDED | 0.001s
+MONGODB | mongodb:27017 | dev.insert | STARTED | {"insert"=>"products", "documents"=>[{"_id"=>BSON::ObjectId('5c558f5d943ba30009f0ffae'), "uid"=>"1r4Yp0WrTlogt6h1", "name"=>"Product 1", "price"=>2.5}], "ordered"=>true}
+MONGODB | mongodb:27017 | dev.insert | SUCCEEDED | 0.000s
+MONGODB | mongodb:27017 | dev.insert | STARTED | {"insert"=>"products", "documents"=>[{"_id"=>BSON::ObjectId('5c558f5d943ba30009f0ffaf'), "uid"=>"erou29r83uroeiu2", "name"=>"Product 2", "price"=>7.5}], "ordered"=>true}
+MONGODB | mongodb:27017 | dev.insert | SUCCEEDED | 0.000s
+Started GET "/products" for 172.22.0.2 at 2019-02-02 12:39:04 +0000
+Processing by ProductsController#index as */*
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyOpening topology=Unknown>
+MONGODB | Topology type 'unknown' initializing.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::ServerOpening address=mongodb:27017 topology=Unknown>
+MONGODB | Server mongodb:27017 initializing.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyChanged prev=Unknown new=Single>
+MONGODB | Topology type 'unknown' changed to type 'single'.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::ServerDescriptionChanged>
+MONGODB | Server description for mongodb:27017 changed from 'unknown' to 'standalone'.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyChanged prev=Single new=Single>
+MONGODB | There was a change in the members of the 'single' topology.
+MONGODB | mongodb:27017 | dev.find | STARTED | {"find"=>"products", "filter"=>{}}
+MONGODB | mongodb:27017 | dev.find | SUCCEEDED | 0.001s
+Completed 200 OK in 14ms (Views: 8.8ms)
+
+
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyOpening topology=Unknown>
+MONGODB | Topology type 'unknown' initializing.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::ServerOpening address=mongodb:27017 topology=Unknown>
+MONGODB | Server mongodb:27017 initializing.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyChanged prev=Unknown new=Single>
+MONGODB | Topology type 'unknown' changed to type 'single'.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::ServerDescriptionChanged>
+MONGODB | Server description for mongodb:27017 changed from 'unknown' to 'standalone'.
+MONGODB | EVENT: #<Mongo::Monitoring::Event::TopologyChanged prev=Single new=Single>
+MONGODB | There was a change in the members of the 'single' topology.
+MONGODB | mongodb:27017 | dev.delete | STARTED | {"delete"=>"products", "deletes"=>[{"q"=>{}, "limit"=>0}], "ordered"=>true}
+MONGODB | mongodb:27017 | dev.delete | SUCCEEDED | 0.032s
+MONGODB | mongodb:27017 | dev.insert | STARTED | {"insert"=>"products", "documents"=>[{"_id"=>BSON::ObjectId('5c574741943ba30008c05c57'), "uid"=>"1r4Yp0WrTlogt6h1", "name"=>"Product 1", "price"=>2.5}], "ordered"=>true}
+MONGODB | mongodb:27017 | dev.insert | SUCCEEDED | 0.001s
+MONGODB | mongodb:27017 | dev.insert | STARTED | {"insert"=>"products", "documents"=>[{"_id"=>BSON::ObjectId('5c574741943ba30008c05c58'), "uid"=>"erou29r83uroeiu2", "name"=>"Product 2", "price"=>7.5}], "ordered"=>true}
+MONGODB | mongodb:27017 | dev.insert | SUCCEEDED | 0.001s

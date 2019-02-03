@@ -9,10 +9,21 @@ module MessageBrokers
   class Postcard
     include Singleton
 
-    def connect
-      @value = 1
-      puts "connect"
-      puts @value
+    include Errors::Application
+    include Print
+
+    def connect host: nil
+      raise Application::MissingParameter if host.nil? 
+
+      dispatcher = RabbitMQDispatcher.new(host: host)
+      postcardRB = PostcardRB.new(dispatcher: dispatcher)
+      
+      begin
+        postcardRB.connect
+      rescue PostcardConnectionRefused
+        Print::error(code: 10001, message: "RabbitMQ connection refused")
+        abort "RabbitMQ connection refused"
+      end
     end
 
     def send
