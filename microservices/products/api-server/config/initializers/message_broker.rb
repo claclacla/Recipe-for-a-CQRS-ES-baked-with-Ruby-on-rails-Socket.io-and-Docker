@@ -1,1 +1,1 @@
-MessageBrokers::Postcard.instance.connect(host: "rabbitmq")
+MessageBroker.instance.connect(host: "rabbitmqqqqq")
