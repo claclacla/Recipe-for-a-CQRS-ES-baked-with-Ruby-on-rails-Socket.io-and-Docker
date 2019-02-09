@@ -59,6 +59,9 @@ services:
       - "${APP_FOLDER}/microservices/orders/api-server/config/routes.rb:/usr/src/app/config/routes.rb"
       - "${APP_FOLDER}/microservices/orders/api-server/db:/usr/src/app/db"
       - "${APP_FOLDER}/microservices/orders/api-server/lib:/usr/src/app/lib"
+    links:
+      - mongodb
+      - rabbitmq
 
   products-api-server:
     image: claclacla/products-api-server
@@ -69,6 +72,9 @@ services:
       - api_gateway_network
     volumes:
       - "${APP_FOLDER}/microservices/products/api-server:/usr/src/app"
+    links:
+      - mongodb
+      - rabbitmq
 
   api-gateway:
     build: ./api-gateway

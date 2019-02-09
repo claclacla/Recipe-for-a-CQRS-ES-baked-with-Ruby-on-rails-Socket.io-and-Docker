@@ -1,13 +1,11 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :update, :destroy]
 
-  include MessageBrokers
+  include MessageBrokerClient
 
   # GET /products
   def index
     @products = Product.all
-
-    MessageBrokers::Postcard.instance.send
 
     render json: @products
   end
@@ -19,13 +17,18 @@ class ProductsController < ApplicationController
 
   # POST /products
   def create
-    @product = Product.new(product_params)
+    payload = {
+      message: "Insert a product"
+    }
+    
+    MessageBrokerClient::Topics::PlatformEventsScheduler.instance.publish(payload: payload)
+    #@product = Product.new(product_params)
 
-    if @product.save
-      render json: @product, status: :created, location: @product
-    else
-      render json: @product.errors, status: :unprocessable_entity
-    end
+    # if @product.save
+    #   render json: @product, status: :created, location: @product
+    # else
+    #   render json: @product.errors, status: :unprocessable_entity
+    # end
   end
 
   # PATCH/PUT /products/1
