@@ -156,7 +156,7 @@ cd /path-to-your-local/app
 
 # Products api server is used for experimentation with ruby on rails.
 # Build it with the ruby-on-rails-experimental image
-sudo docker build --build-arg MICROSERVICE_COMPONENT=products -f docker/dev/ruby-on-rails-exp/Dockerfile . -t claclacla/products-api-server
+sudo docker build -f docker/dev/api-server/Dockerfile . -t claclacla/api-server
 
 # Change the directory to the docker development 
 cd docker/dev

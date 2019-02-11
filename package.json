@@ -10,7 +10,7 @@
   "dependencies": {
     "amqplib": "0.5.3",
     "mongoose": "5.2.2",
-    "postcard-js": "0.0.2",
+    "postcard-js": "1.0.0",
     "heapdump": "0.3.12"
   }
 }

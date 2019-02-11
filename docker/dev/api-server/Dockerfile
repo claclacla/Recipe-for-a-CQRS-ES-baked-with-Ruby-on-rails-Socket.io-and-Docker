@@ -1,8 +1,11 @@
 FROM ruby:2.5.3
 
-COPY ruby-on-rails /usr/src/app
-WORKDIR /usr/src/app
+COPY microservices/api-server/Gemfile /tmp
+COPY microservices/api-server/Gemfile.lock /tmp
+WORKDIR /tmp
 RUN bundle install
+
+WORKDIR /usr/src/app
 
 CMD rm -f tmp/pids/server.pid \
   && rake db:seed \

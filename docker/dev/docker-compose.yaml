@@ -45,33 +45,15 @@ services:
 
   # Components
 
-  orders-api-server:
-    build: ./api-server
+  api-server:
     image: claclacla/api-server
-    container_name: OrdersAPIServer
+    container_name: APIServer
     networks:
       - rabbitmq_network
       - mongodb_network
       - api_gateway_network
     volumes:
-      - "${APP_FOLDER}/microservices/orders/api-server/app/controllers:/usr/src/app/app/controllers"
-      - "${APP_FOLDER}/microservices/orders/api-server/app/models:/usr/src/app/app/models"
-      - "${APP_FOLDER}/microservices/orders/api-server/config/routes.rb:/usr/src/app/config/routes.rb"
-      - "${APP_FOLDER}/microservices/orders/api-server/db:/usr/src/app/db"
-      - "${APP_FOLDER}/microservices/orders/api-server/lib:/usr/src/app/lib"
-    links:
-      - mongodb
-      - rabbitmq
-
-  products-api-server:
-    image: claclacla/products-api-server
-    container_name: ProductsAPIServer
-    networks:
-      - rabbitmq_network
-      - mongodb_network
-      - api_gateway_network
-    volumes:
-      - "${APP_FOLDER}/microservices/products/api-server:/usr/src/app"
+      - "${APP_FOLDER}/microservices/api-server:/usr/src/app"
     links:
       - mongodb
       - rabbitmq

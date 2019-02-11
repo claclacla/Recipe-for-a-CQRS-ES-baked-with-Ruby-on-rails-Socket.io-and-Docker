@@ -11,7 +11,7 @@ const Routing = require('postcard-js/Routing');
 
   // RabbitMQ
 
-  const rabbitMQDispatcher = new RabbitMQDispatcher({ 
+  const rabbitMQDispatcher = new RabbitMQDispatcher({
     host: "amqp://rabbitmq"
   });
   const postcard = new Postcard(rabbitMQDispatcher);
@@ -37,7 +37,7 @@ const Routing = require('postcard-js/Routing');
 
   onPlatformEventSchedule.subscribe(async (msg) => {
     let content = JSON.parse(msg.content);
-    
+
     console.log(content);
   });
 })();
