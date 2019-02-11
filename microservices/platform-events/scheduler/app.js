@@ -37,7 +37,7 @@ const Routing = require('postcard-js/Routing');
     return;
   }
 
-  onPlatformEventSchedule.subscribe(async (msg) => {
+  onPlatformEventSchedule.subscribe(async function onPlatformEventScheduleSubscriber(msg) {
     let content = JSON.parse(msg.content);
 
     console.log(content);
