@@ -14,7 +14,9 @@ const Routing = require('postcard-js/Routing');
   const rabbitMQDispatcher = new RabbitMQDispatcher({
     host: "amqp://rabbitmq"
   });
-  const postcard = new Postcard(rabbitMQDispatcher);
+  const postcard = new Postcard({ 
+    dispatcher: rabbitMQDispatcher 
+  });
 
   try {
     await postcard.connect();

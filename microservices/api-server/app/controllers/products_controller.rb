@@ -3,6 +3,9 @@ class ProductsController < ApplicationController
 
   include MessageBrokerClient
 
+  rescue_from ActionController::ParameterMissing, with: :bad_request_response
+  rescue_from ActionController::UnpermittedParameters, with: :bad_request_response
+
   # GET /products
   def index
     @products = Product.all
@@ -17,18 +20,16 @@ class ProductsController < ApplicationController
 
   # POST /products
   def create
-    payload = {
-      message: "Insert a product"
-    }
-    
-    MessageBrokerClient::Topics::PlatformEventsScheduler.instance.publish(payload: payload)
-    #@product = Product.new(product_params)
+    productParam = product_params
 
-    # if @product.save
-    #   render json: @product, status: :created, location: @product
-    # else
-    #   render json: @product.errors, status: :unprocessable_entity
-    # end
+    payload = {
+      event: "create",
+      data: productParam
+    }
+
+    MessageBrokerClient::Topics::PlatformEventsScheduler.instance.publish(payload: payload)
+
+    render :nothing => true, status: :accepted
   end
 
   # PATCH/PUT /products/1
@@ -46,13 +47,11 @@ class ProductsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product
-      @product = Product.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
     def product_params
-      params.require(:product).permit(:name, :price)
+      params.require(:data).permit(:name, :price)
+    end
+  
+    def bad_request_response
+      render :nothing => true, :status => :bad_request
     end
 end
