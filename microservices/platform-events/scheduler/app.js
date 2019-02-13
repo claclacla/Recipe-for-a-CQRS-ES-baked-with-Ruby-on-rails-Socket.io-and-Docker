@@ -1,11 +1,16 @@
 const heapdump = require("heapdump");
 
-const printExecutionTime = require("../../../js/lib/printExecutionTime");
-const printError = require("../../../js/lib/printError");
-
 const RabbitMQDispatcher = require('postcard-js/dispatchers/RabbitMQ/RabbitMQDispatcher');
 const Postcard = require('postcard-js/Postcard');
 const Routing = require('postcard-js/Routing');
+
+const printExecutionTime = require("../../../js/lib/printExecutionTime");
+const printError = require("../../../js/lib/printError");
+
+const mongooseConnect = require("../../../js/repositories/Mongoose/lib/connect");
+
+const PlatformEventsEntity = require("../../../js/entities/PlatformEventsEntity");
+const PlatformEventsRepository = require("../../../js/repositories/Mongoose/PlatformEventsMongooseRepository");
 
 (async () => {
 
@@ -14,14 +19,27 @@ const Routing = require('postcard-js/Routing');
   const rabbitMQDispatcher = new RabbitMQDispatcher({
     host: "amqp://rabbitmq"
   });
-  const postcard = new Postcard({ 
-    dispatcher: rabbitMQDispatcher 
+  const postcard = new Postcard({
+    dispatcher: rabbitMQDispatcher
   });
 
   try {
     await postcard.connect();
   } catch (error) {
     printError(10001, error);
+    return;
+  }
+
+  // Mongoose
+
+  try {
+    await mongooseConnect({
+      host: "mongodb",
+      port: "27017",
+      database: "dev"
+    });
+  } catch (error) {
+    printError(10002, error);
     return;
   }
 
@@ -37,9 +55,24 @@ const Routing = require('postcard-js/Routing');
     return;
   }
 
-  onPlatformEventSchedule.subscribe(async function onPlatformEventScheduleSubscriber(msg) {
-    let content = JSON.parse(msg.content);
+  // TODO: Add a payload parser
 
-    console.log(content);
+  onPlatformEventSchedule.subscribe(async function onPlatformEventScheduleSubscriber(msg) {
+    let payload = JSON.parse(msg.content);
+
+    let platformEventsEntity = new PlatformEventsEntity({
+      event: payload.event,
+      data: payload.data
+    });
+
+    let platformEventsRepository = new PlatformEventsRepository();
+
+    try {     
+      await platformEventsRepository.add(platformEventsEntity); 
+    } catch (error) {
+      
+      // TODO: Handle this error
+
+    }
   });
 })();

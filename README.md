@@ -102,7 +102,7 @@ rails g scaffold order number:integer date:datetime products:array
 
 ### TODO
 
-* Implement the active Mongoid approach for the objects/data relation
+* Development environment: Watch the node.js microservices files changes 
 
 * RabbitMQ
     * Auto reconnect on disconnect

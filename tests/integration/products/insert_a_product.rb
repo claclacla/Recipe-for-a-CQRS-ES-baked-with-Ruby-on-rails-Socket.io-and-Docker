@@ -16,13 +16,14 @@ describe "Insert a product" do
 
       response = @connection.post '/products', {
         "data": {
-          name: "Product 1"
+          name: "Product 1",
+          price: 4.5
         }
       }
 
       # Expected status: 202 Accepted
   
-      # expect(response.status).to be == 202
+      expect(response.status).to be == 202
     end
   end
 end
