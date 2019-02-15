@@ -1,7 +1,9 @@
-FROM ruby:2.5.3
+# FROM ruby:2.5.3
+# RUN gem install rspec faraday faraday_middleware
+# WORKDIR /usr/src/app
+# CMD sleep infinity
 
-RUN gem install rspec faraday faraday_middleware
+FROM node:10.15.1-slim
 
-WORKDIR /usr/src/app
-
-CMD sleep infinity
+CMD npm install --prefix /usr/src/app \
+  && sleep infinity

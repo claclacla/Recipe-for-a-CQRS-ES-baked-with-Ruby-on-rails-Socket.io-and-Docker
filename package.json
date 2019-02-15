@@ -1,5 +1,5 @@
 {
-  "name": "cqrs-es",
+  "name": "js-microservice",
   "version": "0.0.1",
   "private": true,
   "description": "Recipe for a CQRS + ES baked with Ruby on rails, Socket.io and Docker",
@@ -11,6 +11,8 @@
     "amqplib": "0.5.3",
     "mongoose": "5.2.2",
     "postcard-js": "1.0.0",
-    "heapdump": "0.3.12"
+    "heapdump": "0.3.12",
+    "supertest": "3.4.2",
+    "assert": "1.4.1"
   }
 }
