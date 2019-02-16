@@ -6,7 +6,7 @@
 
 ### **Database**
 
-#### Write database(Source of truth)
+#### Source database
 Contains the sections raw data and the events sourcing collection.
 
 Tables:
@@ -15,7 +15,7 @@ Tables:
     * Accepted operation: `INSERT`
 * orders
 
-#### Read database
+#### Presentation database
 Contains the readable data composed in complex objects prepared for reading operations.
 
 Tables:
@@ -28,11 +28,11 @@ This microservice inserts new events to the `events` collection with the type an
 
 #### Orders events manager
 This microservice checks periodically if there are new commands into the `events` collection and execute them ordered by creation time.
-After execution publish a message to notify the `orders` collection of the `Write database` update.
+After execution publish a message to notify the `orders` collection of the `Source database` update.
 
 #### Orders readable data baker
-This microservice translates the `orders` collection of the `Write database` updates in objects created for reading operations into the `orders` collection of the `Read database`.
-After the data were written, it sends a message in order to inform the `Read database` change.
+This microservice translates the `orders` collection of the `Source database` updates in objects created for reading operations into the `orders` collection of the `Presentation database`.
+After the data were written, it sends a message in order to inform the `Presentation database` change.
 
 ### **API**
 
@@ -43,10 +43,10 @@ After the data were written, it sends a message in order to inform the `Read dat
     * In case of success it returns `202 Accepted` with an empty payload
 
 * GET /order
-    * Read the orders list directly from the `Read database` without any transformation
+    * Read the orders list directly from the `Presentation database` without any transformation
 
 * GET /order/<order id>
-    * Read the order detail directly from the `Read database` without any transformation
+    * Read the order detail directly from the `Presentation database` without any transformation
 
 ### **Web sockets**
 
@@ -64,13 +64,31 @@ After the data were written, it sends a message in order to inform the `Read dat
 * This API sends a new message to the `Events writer` microservice with the order data and responds with a `202 Accepted` status
 * The `Events writer` microservice inserts this new event in the `events` collection with the type and the payload
 * Meanwhile the `Orders events manager` microservice is listening for new operations in the `events` collection. When it reads this new event, it executes the related command and publishes a message in order to inform the update
-* When the `Orders readable data baker` listens this message, update the `Read database` and publish a new message to notify about the change the `order-events` web socket
+* When the `Orders readable data baker` listens this message, update the `Presentation database` and publish a new message to notify about the change the `order-events` web socket
 * The frontend order web socket client is informed about the insertion completed
 
 ### **Read operation**
 
 * The frontend application calls a `GET` API in order to retrieve the orders list or detail
 * The `GET` API responds with the requested data
+
+## Topics/Rooms
+
+```bash
+# . Room:
+# platform-events-scheduler
+
+# . Topics: 
+# platform-event.schedule 
+# platform-event.created.product
+
+# . Room:
+# data-source
+
+# . Topics:
+# product.created
+
+```
 
 --------------------------------------------------------------------------------
 
@@ -102,11 +120,6 @@ rails g scaffold order number:integer date:datetime products:array
 
 ### TODO
 
-* Development environment: Watch the node.js microservices files changes 
-
-* RabbitMQ
-    * Auto reconnect on disconnect
-
 * Ruby on rails:
     * Use a different "id" field than "_id" for retrieving documents
     * API requests parameters and payloads parsers
@@ -122,8 +135,6 @@ rails g scaffold order number:integer date:datetime products:array
 
 * Web sockets:
     * requests parameters and payloads parsers
-
-* Add tests
 
 --------------------------------------------------------------------------------
 

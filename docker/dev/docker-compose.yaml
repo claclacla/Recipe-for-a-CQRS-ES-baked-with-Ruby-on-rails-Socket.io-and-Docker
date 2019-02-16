@@ -72,6 +72,25 @@ services:
     links:
       - api-server
 
+  # Products
+
+  products-socket:
+    build: ./js-microservice
+    image: claclacla/js-microservice
+    container_name: ProductsSocket
+    environment:
+      - MICROSERVICE_PATH=/usr/src/app/microservices/products/socket/app.js
+    networks:
+      - mongodb_network
+      - rabbitmq_network
+    volumes:
+      - "${APP_FOLDER}:/usr/src/app"
+    links:
+      - mongodb
+      - rabbitmq
+    tty: true
+    stdin_open: true
+
   # Dev machine
 
   dev-machine:
