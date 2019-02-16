@@ -29,7 +29,7 @@ class ProductsController < ApplicationController
 
     MessageBrokerClient::Topics::PlatformEventsScheduler.instance.publish(payload: payload)
 
-    render :nothing => true, status: :accepted
+    render json: {}, status: :accepted
   end
 
   # PATCH/PUT /products/1

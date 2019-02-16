@@ -1,4 +1,4 @@
-const heapdump = require("heapdump");
+//const heapdump = require("heapdump");
 
 const RabbitMQDispatcher = require('postcard-js/dispatchers/RabbitMQ/RabbitMQDispatcher');
 const Postcard = require('postcard-js/Postcard');
