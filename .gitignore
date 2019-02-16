@@ -54,3 +54,4 @@ build-iPhoneSimulator/
 node_modules
 package-lock.json
 server.pid
+*.heapsnapshop

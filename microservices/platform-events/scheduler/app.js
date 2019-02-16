@@ -73,6 +73,8 @@ const PlatformEventsRepository = require("../../../js/repositories/Mongoose/Plat
       
       // TODO: Handle this error
 
+      console.log(error);
+      
     }
   });
 })();
