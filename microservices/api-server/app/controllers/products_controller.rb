@@ -24,6 +24,7 @@ class ProductsController < ApplicationController
 
     payload = {
       event: "create",
+      component: "product",
       data: productParam
     }
 

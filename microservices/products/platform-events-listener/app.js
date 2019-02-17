@@ -45,39 +45,15 @@ const PlatformEventsRepository = require("../../../js/repositories/Mongoose/Plat
     return;
   }
 
-  let platformEventsSchedulerTopic = postcard.createTopic({ name: "platform-events-scheduler", routing: Routing.Explicit });
-  let onPlatformEventSchedule = null;
+  // let platformEventsSchedulerTopic = postcard.createTopic({ name: "platform-events-scheduler", routing: Routing.Explicit });
+  // let onPlatformEventSchedule = null;
 
   printExecutionTime();
 
-  try {
-    onPlatformEventSchedule = await platformEventsSchedulerTopic.createRoom({ name: "platform-event.schedule", autoDelete: true });
-  } catch (error) {
-    printError(10003, error);
-    return;
-  }
-
-  // TODO: Add a payload parser
-
-  onPlatformEventSchedule.subscribe(async function onPlatformEventScheduleSubscriber(msg) {
-    let payload = JSON.parse(msg.content);
-
-    let platformEventsEntity = new PlatformEventsEntity({
-      event: payload.event,
-      component: payload.component,
-      data: payload.data
-    });
-
-    let platformEventsRepository = new PlatformEventsRepository({ connection: dataSourceConnection });
-
-    try {     
-      await platformEventsRepository.add(platformEventsEntity); 
-    } catch (error) {
-      
-      // TODO: Handle this error
-
-      console.log(error);
-      
-    }
-  });
+  // try {
+  //   onPlatformEventSchedule = await platformEventsSchedulerTopic.createRoom({ name: "platform-event.schedule", autoDelete: true });
+  // } catch (error) {
+  //   printError(10003, error);
+  //   return;
+  // }
 })();

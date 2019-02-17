@@ -18,7 +18,8 @@ const mongooselib = {
 
 let platformEventsSchema = mongoose.Schema({
 	uid: String,
-  event: String,
+	event: String,
+	component: String, 
   data: {}
 }, mongooselib.schema_options);
 
