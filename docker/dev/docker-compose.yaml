@@ -32,6 +32,7 @@ services:
     container_name: PlatformEventsScheduler
     environment:
       - MICROSERVICE_PATH=/usr/src/app/microservices/platform-events/scheduler/app.js
+      - APP_ENV=development
     networks:
       - mongodb_network
       - rabbitmq_network
@@ -80,6 +81,7 @@ services:
     container_name: ProductsSocket
     environment:
       - MICROSERVICE_PATH=/usr/src/app/microservices/products/socket/app.js
+      - APP_ENV=development
     networks:
       - mongodb_network
       - rabbitmq_network

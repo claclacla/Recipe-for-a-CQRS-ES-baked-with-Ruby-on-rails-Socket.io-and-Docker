@@ -15,7 +15,7 @@ function setMongoUrl({ user, password, host, port, database }) {
 async function connect({ user, password, host, port, database }) {
   let mongoUrl = setMongoUrl({ user, password, host, port, database });
 
-  await mongoose.connect(mongoUrl, { useNewUrlParser: true });
+  return await mongoose.createConnection(mongoUrl, { useNewUrlParser: true });
 }
 
 module.exports = connect;

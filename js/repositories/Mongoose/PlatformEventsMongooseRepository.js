@@ -1,7 +1,4 @@
-const mongoose = require("mongoose");
-const ObjectId = mongoose.Types.ObjectId;
-
-const MongoosePlatformEvents = require("./model/PlatformEvents");
+const platformEventsModelFactory = require("./modelFactories/platformEventsModelFactory");
 const PlatformEventsEntity = require("../../entities/PlatformEventsEntity");
 const IRepository = require("../IRepository");
 const UID = require("../../lib/UID/UID");
@@ -9,7 +6,13 @@ const UID = require("../../lib/UID/UID");
 const DatabaseError = require('../../errors/application/DatabaseError');
 
 class PlatformEventsMongooseRepository extends IRepository {
-  constructor() {
+  constructor({ connection }) {
+    if(connection === undefined) {
+      throw new Error("connection is a required parameter");
+    }
+
+    this.connection = connection;
+
     super();
   }
 
@@ -17,6 +20,8 @@ class PlatformEventsMongooseRepository extends IRepository {
     if(platformEventsEntity instanceof PlatformEventsEntity === false) {
       throw new Error("The parameter is not an instance of PlatformEventsEntity");
     }
+
+    let MongoosePlatformEvents = platformEventsModelFactory({ connection: this.connection });
 
     const mongoosePlatformEvents = new MongoosePlatformEvents({
       event: platformEventsEntity.event,

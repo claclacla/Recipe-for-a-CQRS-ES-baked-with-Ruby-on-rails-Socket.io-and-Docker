@@ -1,0 +1,23 @@
+{
+  "development": {
+    "databases": {
+      "dataSource": {
+        "host": "mongodb",
+        "user": "",
+        "password": "",
+        "database": "data-source",
+        "port": "27017"
+      },
+      "dataPresentation": {
+        "host": "mongodb",
+        "user": "",
+        "password": "",
+        "database": "data-presentation",
+        "port": "27017"
+      }
+    },
+    "rabbitmq": {
+      "host": "rabbitmq"
+    }
+  }
+}

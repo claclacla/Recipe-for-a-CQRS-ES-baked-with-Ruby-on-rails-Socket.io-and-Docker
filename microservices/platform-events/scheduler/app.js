@@ -1,5 +1,9 @@
 //const heapdump = require("heapdump");
 
+const APP_ENV = process.env.APP_ENV;
+
+const config = require("../../../config.json")[APP_ENV];
+
 const RabbitMQDispatcher = require('postcard-js/dispatchers/RabbitMQ/RabbitMQDispatcher');
 const Postcard = require('postcard-js/Postcard');
 const Routing = require('postcard-js/Routing');
@@ -17,7 +21,7 @@ const PlatformEventsRepository = require("../../../js/repositories/Mongoose/Plat
   // RabbitMQ
 
   const rabbitMQDispatcher = new RabbitMQDispatcher({
-    host: "amqp://rabbitmq"
+    host: "amqp://" + config.rabbitmq.host
   });
   const postcard = new Postcard({
     dispatcher: rabbitMQDispatcher
@@ -32,12 +36,10 @@ const PlatformEventsRepository = require("../../../js/repositories/Mongoose/Plat
 
   // Mongoose
 
+  let dataSourceConnection = null;
+
   try {
-    await mongooseConnect({
-      host: "mongodb",
-      port: "27017",
-      database: "dev"
-    });
+    dataSourceConnection = await mongooseConnect(config.databases.dataSource);
   } catch (error) {
     printError(10002, error);
     return;
@@ -65,7 +67,7 @@ const PlatformEventsRepository = require("../../../js/repositories/Mongoose/Plat
       data: payload.data
     });
 
-    let platformEventsRepository = new PlatformEventsRepository();
+    let platformEventsRepository = new PlatformEventsRepository({ connection: dataSourceConnection });
 
     try {     
       await platformEventsRepository.add(platformEventsEntity); 

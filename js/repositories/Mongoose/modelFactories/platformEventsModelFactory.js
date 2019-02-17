@@ -16,8 +16,12 @@ const mongooselib = {
 	}
 };
 
-module.exports = mongoose.Schema({
+let platformEventsSchema = mongoose.Schema({
 	uid: String,
   event: String,
   data: {}
 }, mongooselib.schema_options);
+
+module.exports = function platformEventsModelFactory(connection) {
+  connection.model('PlatformEvents', platformEventsSchema, 'platform_events');
+}
