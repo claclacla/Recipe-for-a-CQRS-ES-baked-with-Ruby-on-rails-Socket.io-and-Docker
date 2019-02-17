@@ -22,6 +22,6 @@ let platformEventsSchema = mongoose.Schema({
   data: {}
 }, mongooselib.schema_options);
 
-module.exports = function platformEventsModelFactory(connection) {
-  connection.model('PlatformEvents', platformEventsSchema, 'platform_events');
+module.exports = function platformEventsModelFactory({ connection }) {
+  return connection.model('PlatformEvents', platformEventsSchema, 'platform_events');
 }

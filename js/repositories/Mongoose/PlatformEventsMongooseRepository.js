@@ -11,9 +11,9 @@ class PlatformEventsMongooseRepository extends IRepository {
       throw new Error("connection is a required parameter");
     }
 
-    this.connection = connection;
-
     super();
+
+    this.connection = connection;
   }
 
   async add(platformEventsEntity) {

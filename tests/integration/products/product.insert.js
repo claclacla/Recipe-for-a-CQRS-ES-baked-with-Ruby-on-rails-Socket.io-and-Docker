@@ -3,7 +3,7 @@ var assert = require("assert");
 
 // Example: sudo docker exec -e apiaddress="http://api-gateway" -it DEVMachine mocha /usr/src/app/tests/integration/products/product.insert.js
 
-var apiaddress = "http://api-gateway"; //process.env.apiaddress;
+var apiaddress = process.env.apiaddress;
 var server = supertest.agent(process.env.apiaddress);
 
 describe('Insert a product', function () {
