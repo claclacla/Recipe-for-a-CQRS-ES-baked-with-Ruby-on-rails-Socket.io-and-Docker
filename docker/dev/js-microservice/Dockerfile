@@ -7,4 +7,4 @@ WORKDIR /usr/src/app
 
 CMD sudo npm i \
   && npm i -g nodemon@1.18.10 \
-  && nodemon $MICROSERVICE_PATH
+  && nodemon $MICROSERVICE_PATH/app.js --watch $MICROSERVICE_PATH --watch js

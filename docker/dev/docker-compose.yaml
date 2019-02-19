@@ -31,7 +31,7 @@ services:
     image: claclacla/js-microservice
     container_name: PlatformEventsScheduler
     environment:
-      - MICROSERVICE_PATH=/usr/src/app/microservices/platform-events/scheduler/app.js
+      - MICROSERVICE_PATH=/usr/src/app/microservices/platform-events/scheduler
       - APP_ENV=development
     networks:
       - mongodb_network
@@ -80,7 +80,7 @@ services:
     image: claclacla/js-microservice
     container_name: ProductsPlatformEventsListener
     environment:
-      - MICROSERVICE_PATH=/usr/src/app/microservices/products/platform-events-listener/app.js
+      - MICROSERVICE_PATH=/usr/src/app/microservices/products/platform-events-listener
       - APP_ENV=development
     networks:
       - mongodb_network
@@ -98,7 +98,7 @@ services:
     image: claclacla/js-microservice
     container_name: ProductsSocket
     environment:
-      - MICROSERVICE_PATH=/usr/src/app/microservices/products/socket/app.js
+      - MICROSERVICE_PATH=/usr/src/app/microservices/products/socket
       - APP_ENV=development
     networks:
       - mongodb_network
