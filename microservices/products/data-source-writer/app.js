@@ -13,8 +13,8 @@ const printError = require("../../../js/lib/printError");
 
 const mongooseConnect = require("../../../js/repositories/Mongoose/lib/connect");
 
-const PlatformEventsEntity = require("../../../js/entities/PlatformEventsEntity");
-const PlatformEventsRepository = require("../../../js/repositories/Mongoose/PlatformEventsMongooseRepository");
+const ProductEntity = require("../../../js/entities/ProductEntity");
+const ProductRepository = require("../../../js/repositories/Mongoose/ProductMongooseRepository");
 
 (async () => {
 
@@ -61,7 +61,27 @@ const PlatformEventsRepository = require("../../../js/repositories/Mongoose/Plat
 
   onCreatedProductPlatformEvent.subscribe(async function onCreatedProductPlatformEventSubscriber(msg) {
     let payload = JSON.parse(msg.content);
-    
-    console.log(payload);
+
+    let productEntity = new ProductEntity({
+      name: payload.name,
+      price: payload.price
+    });
+
+    let productRepository = new ProductRepository({ connection: dataSourceConnection });
+
+    try {
+      await productRepository.add(productEntity);
+
+      // platformEventsSchedulerTopic.publish({
+      //   room: "platform-event.created.product",
+      //   payload: JSON.stringify(platformEventsEntity.data)
+      // });
+    } catch (error) {
+
+      // TODO: Handle this error
+
+      console.log(error);
+
+    }
   });
 })();
