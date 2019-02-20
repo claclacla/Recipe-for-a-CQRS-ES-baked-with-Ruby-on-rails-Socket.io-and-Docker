@@ -72,6 +72,13 @@ const PlatformEventsRepository = require("../../../js/repositories/Mongoose/Plat
 
     try {     
       await platformEventsRepository.add(platformEventsEntity); 
+
+      if(platformEventsEntity.component === PlatformEventsEntity.ProductComponent) {      
+        platformEventsSchedulerTopic.publish({
+          room: "platform-event.created.product",
+          payload: JSON.stringify(platformEventsEntity.data)
+        });
+      }
     } catch (error) {
       
       // TODO: Handle this error

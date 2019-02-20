@@ -34,6 +34,7 @@ class PlatformEventsMongooseRepository extends IRepository {
 
       const resPlatformEventsEntity = new PlatformEventsEntity({
         event: resMongoosePlatformEvents.event,
+        component: resMongoosePlatformEvents.component,
         data: resMongoosePlatformEvents.data
       });
 

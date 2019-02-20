@@ -20,6 +20,8 @@ class PlatformEventsEntity extends IEntity {
     this.component = component;
     this.data = data;
   }
+
+  static get ProductComponent() { return "product" }
 }
 
 module.exports = PlatformEventsEntity

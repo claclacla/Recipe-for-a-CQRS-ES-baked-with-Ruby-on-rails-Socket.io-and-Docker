@@ -45,15 +45,23 @@ const PlatformEventsRepository = require("../../../js/repositories/Mongoose/Plat
     return;
   }
 
-  // let platformEventsSchedulerTopic = postcard.createTopic({ name: "platform-events-scheduler", routing: Routing.Explicit });
-  // let onPlatformEventSchedule = null;
+  let platformEventsSchedulerTopic = postcard.createTopic({ name: "platform-events-scheduler", routing: Routing.Explicit });
+  let onCreatedProductPlatformEvent = null;
 
   printExecutionTime();
 
-  // try {
-  //   onPlatformEventSchedule = await platformEventsSchedulerTopic.createRoom({ name: "platform-event.schedule", autoDelete: true });
-  // } catch (error) {
-  //   printError(10003, error);
-  //   return;
-  // }
+  try {
+    onCreatedProductPlatformEvent = await platformEventsSchedulerTopic.createRoom({ name: "platform-event.created.product", autoDelete: true });
+  } catch (error) {
+    printError(10003, error);
+    return;
+  }
+
+  // TODO: Add a payload parser
+
+  onCreatedProductPlatformEvent.subscribe(async function onCreatedProductPlatformEventSubscriber(msg) {
+    let payload = JSON.parse(msg.content);
+    
+    console.log(payload);
+  });
 })();
