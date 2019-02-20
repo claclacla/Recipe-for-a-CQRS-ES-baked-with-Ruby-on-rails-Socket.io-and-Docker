@@ -75,12 +75,12 @@ services:
 
   # Products
 
-  products-platform-events-listener:
+  products-data-source-writer:
     build: ./js-microservice
     image: claclacla/js-microservice
-    container_name: ProductsPlatformEventsListener
+    container_name: ProductsDataSourceWriter
     environment:
-      - MICROSERVICE_PATH=/usr/src/app/microservices/products/platform-events-listener
+      - MICROSERVICE_PATH=/usr/src/app/microservices/products/data-source-writer
       - APP_ENV=development
     networks:
       - mongodb_network
