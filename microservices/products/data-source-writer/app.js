@@ -11,10 +11,10 @@ const Routing = require('postcard-js/Routing');
 const printExecutionTime = require("../../../js/lib/printExecutionTime");
 const printError = require("../../../js/lib/printError");
 
-const mongooseConnect = require("../../../js/repositories/Mongoose/lib/connect");
+const mongooseConnect = require("../../../js/lib/Mongoose/connect");
 
 const ProductEntity = require("../../../js/entities/ProductEntity");
-const ProductRepository = require("../../../js/repositories/Mongoose/ProductMongooseRepository");
+const DataSourceProductRepository = require("../../../js/repositories/DataSource/ProductRepository");
 
 (async () => {
 
@@ -67,10 +67,10 @@ const ProductRepository = require("../../../js/repositories/Mongoose/ProductMong
       price: payload.price
     });
 
-    let productRepository = new ProductRepository({ connection: dataSourceConnection });
+    let dataSourceProductRepository = new DataSourceProductRepository({ connection: dataSourceConnection });
 
     try {
-      await productRepository.add(productEntity);
+      await dataSourceProductRepository.add(productEntity);
 
       // platformEventsSchedulerTopic.publish({
       //   room: "platform-event.created.product",

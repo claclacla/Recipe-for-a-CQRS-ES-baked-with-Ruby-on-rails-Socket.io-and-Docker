@@ -11,10 +11,10 @@ const Routing = require('postcard-js/Routing');
 const printExecutionTime = require("../../../js/lib/printExecutionTime");
 const printError = require("../../../js/lib/printError");
 
-const mongooseConnect = require("../../../js/repositories/Mongoose/lib/connect");
+const mongooseConnect = require("../../../js/lib/Mongoose/connect");
 
 const PlatformEventsEntity = require("../../../js/entities/PlatformEventsEntity");
-const PlatformEventsRepository = require("../../../js/repositories/Mongoose/PlatformEventsMongooseRepository");
+const DataSourcePlatformEventsRepository = require("../../../js/repositories/DataSource/PlatformEventsRepository");
 
 (async () => {
 
@@ -68,10 +68,10 @@ const PlatformEventsRepository = require("../../../js/repositories/Mongoose/Plat
       data: payload.data
     });
 
-    let platformEventsRepository = new PlatformEventsRepository({ connection: dataSourceConnection });
+    let dataSourcePlatformEventsRepository = new DataSourcePlatformEventsRepository({ connection: dataSourceConnection });
 
     try {     
-      await platformEventsRepository.add(platformEventsEntity); 
+      await dataSourcePlatformEventsRepository.add(platformEventsEntity); 
 
       if(platformEventsEntity.component === PlatformEventsEntity.ProductComponent) {      
         platformEventsSchedulerTopic.publish({

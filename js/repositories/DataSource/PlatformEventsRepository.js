@@ -5,7 +5,7 @@ const UID = require("../../lib/UID/UID");
 
 const DatabaseError = require('../../errors/application/DatabaseError');
 
-class PlatformEventsMongooseRepository extends IRepository {
+class PlatformEventsRepository extends IRepository {
   constructor({ connection }) {
     if(connection === undefined) {
       throw new Error("connection is a required parameter");
@@ -95,4 +95,4 @@ class PlatformEventsMongooseRepository extends IRepository {
   }
 }
 
-module.exports = PlatformEventsMongooseRepository
+module.exports = PlatformEventsRepository
