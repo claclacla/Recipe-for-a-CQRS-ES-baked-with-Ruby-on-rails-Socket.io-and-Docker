@@ -24,6 +24,7 @@ class ProductRepository extends IRepository {
     let MongooseProduct = productModelFactory({ connection: this.connection });
 
     const mongooseProduct = new MongooseProduct({
+      uid: productEntity.uid,
       name: productEntity.name,
       price: productEntity.price
     });
@@ -32,6 +33,7 @@ class ProductRepository extends IRepository {
       const resMongooseProduct = await mongooseProduct.save();
 
       const resProductEntity = new ProductEntity({
+        uid: resMongooseProduct.uid,
         name: resMongooseProduct.name,
         price: resMongooseProduct.price
       });

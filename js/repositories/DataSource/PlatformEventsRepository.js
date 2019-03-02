@@ -24,6 +24,7 @@ class PlatformEventsRepository extends IRepository {
     let MongoosePlatformEvents = platformEventsModelFactory({ connection: this.connection });
 
     const mongoosePlatformEvents = new MongoosePlatformEvents({
+      uid: platformEventsEntity.uid,
       event: platformEventsEntity.event,
       component: platformEventsEntity.component,
       data: platformEventsEntity.data
@@ -33,6 +34,7 @@ class PlatformEventsRepository extends IRepository {
       const resMongoosePlatformEvents = await mongoosePlatformEvents.save();
 
       const resPlatformEventsEntity = new PlatformEventsEntity({
+        uid: resMongoosePlatformEvents.uid,
         event: resMongoosePlatformEvents.event,
         component: resMongoosePlatformEvents.component,
         data: resMongoosePlatformEvents.data
