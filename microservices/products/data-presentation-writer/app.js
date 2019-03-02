@@ -46,14 +46,14 @@ const DataPresentationProductRepository = require("../../../js/repositories/Data
   }
 
   let dataSourceTopic = postcard.createTopic({ name: "data-source", routing: Routing.Explicit });
-  let onCreatedProduct = null;
+  let onDataSourceProductCreated = null;
 
   let productsSocketTopic = postcard.createTopic({ name: "products-socket", routing: Routing.PatternMatching });
 
   printExecutionTime();
 
   try {
-    onCreatedProduct = await dataSourceTopic.createRoom({ name: "product.created", autoDelete: true });
+    onDataSourceProductCreated = await dataSourceTopic.createRoom({ name: "product.created", autoDelete: true });
   } catch (error) {
     printError(10003, error);
     return;
@@ -61,10 +61,10 @@ const DataPresentationProductRepository = require("../../../js/repositories/Data
 
   // TODO: Add a payload parser
 
-  onCreatedProduct.subscribe(async function onCreatedProduct(msg) {
+  onDataSourceProductCreated.subscribe(async function onDataSourceProductCreated(msg) {
     let payload = JSON.parse(msg.content);
 
-    let productEntity = new ProductEntity({
+    let dataSourceProductEntity = new ProductEntity({
       name: payload.name,
       price: payload.price
     });
@@ -72,11 +72,11 @@ const DataPresentationProductRepository = require("../../../js/repositories/Data
     let dataPresentationProductRepository = new DataPresentationProductRepository({ connection: dataPresentationConnection });
 
     try {
-      await dataPresentationProductRepository.add(productEntity);
+      let dataPresentationProductEntity = await dataPresentationProductRepository.add(dataSourceProductEntity);
 
       productsSocketTopic.publish({
         room: "product.created",
-        payload: JSON.stringify(productEntity)
+        payload: JSON.stringify(dataPresentationProductEntity)
       });
     } catch (error) {
 

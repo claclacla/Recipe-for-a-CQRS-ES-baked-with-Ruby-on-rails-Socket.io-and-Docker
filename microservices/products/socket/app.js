@@ -51,7 +51,7 @@ const ProductEntity = require("../../../js/entities/ProductEntity");
     console.log(msg.fields.routingKey, payload);
 
     if (msg.fields.routingKey === "product.created") {
-      let productEntity = new ProductEntity({
+      let dataPresentationProductEntity = new ProductEntity({
         name: payload.name,
         price: payload.price
       });
