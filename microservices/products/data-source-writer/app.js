@@ -72,11 +72,11 @@ const DataSourceProductRepository = require("../../../js/repositories/DataSource
     let dataSourceProductRepository = new DataSourceProductRepository({ connection: dataSourceConnection });
 
     try {
-      await dataSourceProductRepository.add(productEntity);
+      let dataSourceProductEntity = await dataSourceProductRepository.add(productEntity);
 
       dataSourceTopic.publish({
         room: "product.created",
-        payload: JSON.stringify(productEntity)
+        payload: JSON.stringify(dataSourceProductEntity)
       });
     } catch (error) {
 
