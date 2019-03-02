@@ -14,7 +14,7 @@ const printError = require("../../../js/lib/printError");
 const mongooseConnect = require("../../../js/lib/Mongoose/connect");
 
 const ProductEntity = require("../../../js/entities/ProductEntity");
-const DataSourceProductRepository = require("../../../js/repositories/DataSource/ProductRepository");
+const DataPresentationProductRepository = require("../../../js/repositories/DataPresentation/ProductRepository");
 
 (async () => {
 
@@ -36,24 +36,22 @@ const DataSourceProductRepository = require("../../../js/repositories/DataSource
 
   // Mongoose
 
-  let dataSourceConnection = null;
+  let dataPresentationConnection = null;
 
   try {
-    dataSourceConnection = await mongooseConnect(config.databases.dataSource);
+    dataPresentationConnection = await mongooseConnect(config.databases.dataPresentation);
   } catch (error) {
     printError(10002, error);
     return;
   }
 
-  let platformEventsSchedulerTopic = postcard.createTopic({ name: "platform-events-scheduler", routing: Routing.Explicit });
-  let onCreatedProductPlatformEvent = null;
-
   let dataSourceSchedulerTopic = postcard.createTopic({ name: "data-source", routing: Routing.Explicit });
+  let onCreatedProduct = null;
 
   printExecutionTime();
 
   try {
-    onCreatedProductPlatformEvent = await platformEventsSchedulerTopic.createRoom({ name: "platform-event.created.product", autoDelete: true });
+    onCreatedProduct = await dataSourceSchedulerTopic.createRoom({ name: "product.created", autoDelete: true });
   } catch (error) {
     printError(10003, error);
     return;
@@ -61,7 +59,7 @@ const DataSourceProductRepository = require("../../../js/repositories/DataSource
 
   // TODO: Add a payload parser
 
-  onCreatedProductPlatformEvent.subscribe(async function onCreatedProductPlatformEventSubscriber(msg) {
+  onCreatedProduct.subscribe(async function onCreatedProduct(msg) {
     let payload = JSON.parse(msg.content);
 
     let productEntity = new ProductEntity({
@@ -69,15 +67,15 @@ const DataSourceProductRepository = require("../../../js/repositories/DataSource
       price: payload.price
     });
 
-    let dataSourceProductRepository = new DataSourceProductRepository({ connection: dataSourceConnection });
+    let dataPresentationProductRepository = new DataPresentationProductRepository({ connection: dataPresentationConnection });
 
     try {
-      await dataSourceProductRepository.add(productEntity);
+      await dataPresentationProductRepository.add(productEntity);
 
-      dataSourceSchedulerTopic.publish({
-        room: "product.created",
-        payload: JSON.stringify(productEntity)
-      });
+      // platformEventsSchedulerTopic.publish({
+      //   room: "platform-event.created.product",
+      //   payload: JSON.stringify(platformEventsEntity.data)
+      // });
     } catch (error) {
 
       // TODO: Handle this error

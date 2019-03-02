@@ -93,6 +93,24 @@ services:
     tty: true
     stdin_open: true
 
+  products-data-presentation-writer:
+    build: ./js-microservice
+    image: claclacla/js-microservice
+    container_name: ProductsDataPresentationWriter
+    environment:
+      - MICROSERVICE_PATH=/usr/src/app/microservices/products/data-presentation-writer
+      - APP_ENV=development
+    networks:
+      - mongodb_network
+      - rabbitmq_network
+    volumes:
+      - "${APP_FOLDER}:/usr/src/app"
+    links:
+      - mongodb
+      - rabbitmq
+    tty: true
+    stdin_open: true
+
   products-socket:
     build: ./js-microservice
     image: claclacla/js-microservice

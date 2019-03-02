@@ -16,12 +16,13 @@ const mongooselib = {
 	}
 };
 
-let productSchema = mongoose.Schema({
+let platformEventsSchema = mongoose.Schema({
 	uid: String,
-	name: String,
-	price: Number
+	event: String,
+	component: String, 
+  data: {}
 }, mongooselib.schema_options);
 
-module.exports = function productModelFactory({ connection }) {
-  return connection.model('Product', productSchema, 'products');
+module.exports = function platformEventsModelFactory({ connection }) {
+  return connection.model('PlatformEvents', platformEventsSchema, 'platform_events');
 }

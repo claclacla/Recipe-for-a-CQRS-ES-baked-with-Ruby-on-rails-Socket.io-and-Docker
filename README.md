@@ -133,6 +133,15 @@ rails g scaffold order number:integer date:datetime products:array
     * Add a more complex API payload object
     * Add a config file(The rabbitmq address is statically written on message_broker.rb file)
 
+* Database:
+    * platform events:
+        * Add a status property
+
+* Microservices:
+    * Add a cron service per component for checking the unparsed platform events
+    * Add a cron service per component for checking the unparsed source data
+    * Add services for changing the related components on update/delete 
+
 * Web sockets:
     * requests parameters and payloads parsers
 
