@@ -11,7 +11,7 @@ const Routing = require('postcard-js/Routing');
 const printExecutionTime = require("../../../js/lib/printExecutionTime");
 const printError = require("../../../js/lib/printError");
 
-const DataPresentationProductEntity = require("../../../js/entities/DataPresentationProductEntity");
+const DataPresentationProductEntity = require("../../../js/entities/DataPresentation/ProductEntity");
 
 (async () => {
 

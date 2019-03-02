@@ -1,6 +1,6 @@
-const IEntity = require("./IEntity");
+const IEntity = require("../IEntity");
 
-class DataPresentationProductEntity extends IEntity {
+class ProductEntity extends IEntity {
   constructor({ uid, name, price }) {
     super({ uid });
 
@@ -17,4 +17,4 @@ class DataPresentationProductEntity extends IEntity {
   }
 }
 
-module.exports = DataPresentationProductEntity
+module.exports = ProductEntity

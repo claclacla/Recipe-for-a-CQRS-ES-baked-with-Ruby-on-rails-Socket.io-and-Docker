@@ -13,7 +13,7 @@ const printError = require("../../../js/lib/printError");
 
 const mongooseConnect = require("../../../js/lib/Mongoose/connect");
 
-const DataSourceProductEntity = require("../../../js/entities/DataSourceProductEntity");
+const DataSourceProductEntity = require("../../../js/entities/DataSource/ProductEntity");
 const DataSourceProductRepository = require("../../../js/repositories/DataSource/ProductRepository");
 
 (async () => {

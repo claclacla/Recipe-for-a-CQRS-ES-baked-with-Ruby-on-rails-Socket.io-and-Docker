@@ -1,5 +1,5 @@
 const productModelFactory = require("./modelFactories/productModelFactory");
-const DataSourceProductEntity = require("../../entities/DataSourceProductEntity");
+const DataSourceProductEntity = require("../../entities/DataSource/ProductEntity");
 const IRepository = require("../IRepository");
 const UID = require("../../lib/UID/UID");
 
