@@ -15,6 +15,7 @@ const mongooseConnect = require("../../../js/lib/Mongoose/connect");
 
 const DataSourceProductEntity = require("../../../js/entities/DataSource/ProductEntity");
 const DataPresentationProductEntity = require("../../../js/entities/DataPresentation/ProductEntity");
+const DataSourceToDataPresentationProductMapper = require("../../../js/mappers/DataSourceToDataPresentation/ProductMapper");
 const DataPresentationProductRepository = require("../../../js/repositories/DataPresentation/ProductRepository");
 
 (async () => {
@@ -72,10 +73,8 @@ const DataPresentationProductRepository = require("../../../js/repositories/Data
       price: payload.price
     });
 
-    let dataPresentationProductEntity = new DataPresentationProductEntity({
-      name: dataSourceProductEntity.name,
-      price: dataSourceProductEntity.price
-    });
+    let dataSourceToDataPresentationProductMapper = new DataSourceToDataPresentationProductMapper();
+    let dataPresentationProductEntity = dataSourceToDataPresentationProductMapper.map(dataSourceProductEntity);
 
     let dataPresentationProductRepository = new DataPresentationProductRepository({ connection: dataPresentationConnection });
 
