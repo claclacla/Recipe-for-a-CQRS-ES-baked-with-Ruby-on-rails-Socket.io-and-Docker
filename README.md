@@ -88,6 +88,12 @@ After the data were written, it sends a message in order to inform the `Presenta
 # . Topics:
 # product.created
 
+# . Room:
+# products-socket
+
+# . Topics:
+# product.created
+
 ```
 
 --------------------------------------------------------------------------------
@@ -138,6 +144,7 @@ rails g scaffold order number:integer date:datetime products:array
         * Add a status property
 
 * Microservices:
+    * Add the service name after the "Execution time"
     * Add a cron service per component for checking the unparsed platform events
     * Add a cron service per component for checking the unparsed source data
     * Add services for changing the related components on update/delete 

@@ -48,6 +48,8 @@ const DataPresentationProductRepository = require("../../../js/repositories/Data
   let dataSourceSchedulerTopic = postcard.createTopic({ name: "data-source", routing: Routing.Explicit });
   let onCreatedProduct = null;
 
+  let productsSocketTopic = postcard.createTopic({ name: "products-socket", routing: Routing.PatternMatching });
+
   printExecutionTime();
 
   try {
@@ -72,10 +74,10 @@ const DataPresentationProductRepository = require("../../../js/repositories/Data
     try {
       await dataPresentationProductRepository.add(productEntity);
 
-      // platformEventsSchedulerTopic.publish({
-      //   room: "platform-event.created.product",
-      //   payload: JSON.stringify(platformEventsEntity.data)
-      // });
+      productsSocketTopic.publish({
+        room: "product.created",
+        payload: JSON.stringify(productEntity)
+      });
     } catch (error) {
 
       // TODO: Handle this error
