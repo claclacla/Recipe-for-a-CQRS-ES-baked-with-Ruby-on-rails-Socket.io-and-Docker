@@ -48,7 +48,7 @@ const DataSourceProductRepository = require("../../../js/repositories/DataSource
   let platformEventsSchedulerTopic = postcard.createTopic({ name: "platform-events-scheduler", routing: Routing.Explicit });
   let onCreatedProductPlatformEvent = null;
 
-  let dataSourceSchedulerTopic = postcard.createTopic({ name: "data-source", routing: Routing.Explicit });
+  let dataSourceTopic = postcard.createTopic({ name: "data-source", routing: Routing.Explicit });
 
   printExecutionTime();
 
@@ -74,7 +74,7 @@ const DataSourceProductRepository = require("../../../js/repositories/DataSource
     try {
       await dataSourceProductRepository.add(productEntity);
 
-      dataSourceSchedulerTopic.publish({
+      dataSourceTopic.publish({
         room: "product.created",
         payload: JSON.stringify(productEntity)
       });

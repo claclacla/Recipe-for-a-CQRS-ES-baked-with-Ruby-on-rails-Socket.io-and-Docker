@@ -45,7 +45,7 @@ const DataPresentationProductRepository = require("../../../js/repositories/Data
     return;
   }
 
-  let dataSourceSchedulerTopic = postcard.createTopic({ name: "data-source", routing: Routing.Explicit });
+  let dataSourceTopic = postcard.createTopic({ name: "data-source", routing: Routing.Explicit });
   let onCreatedProduct = null;
 
   let productsSocketTopic = postcard.createTopic({ name: "products-socket", routing: Routing.PatternMatching });
@@ -53,7 +53,7 @@ const DataPresentationProductRepository = require("../../../js/repositories/Data
   printExecutionTime();
 
   try {
-    onCreatedProduct = await dataSourceSchedulerTopic.createRoom({ name: "product.created", autoDelete: true });
+    onCreatedProduct = await dataSourceTopic.createRoom({ name: "product.created", autoDelete: true });
   } catch (error) {
     printError(10003, error);
     return;
