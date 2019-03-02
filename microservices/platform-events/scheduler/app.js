@@ -13,7 +13,7 @@ const printError = require("../../../js/lib/printError");
 
 const mongooseConnect = require("../../../js/lib/Mongoose/connect");
 
-const PlatformEventsEntity = require("../../../js/entities/PlatformEventsEntity");
+const PlatformEventsEntity = require("../../../js/entities/DataSource/PlatformEventsEntity");
 const DataSourcePlatformEventsRepository = require("../../../js/repositories/DataSource/PlatformEventsRepository");
 
 (async () => {

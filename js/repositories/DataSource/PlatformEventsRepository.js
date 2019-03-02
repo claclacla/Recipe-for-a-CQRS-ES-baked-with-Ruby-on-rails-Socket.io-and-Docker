@@ -1,5 +1,5 @@
 const platformEventsModelFactory = require("./modelFactories/platformEventsModelFactory");
-const PlatformEventsEntity = require("../../entities/PlatformEventsEntity");
+const PlatformEventsEntity = require("../../entities/DataSource/PlatformEventsEntity");
 const IRepository = require("../IRepository");
 const UID = require("../../lib/UID/UID");
 

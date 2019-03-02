@@ -1,4 +1,4 @@
-const IEntity = require("./IEntity");
+const IEntity = require("../IEntity");
 
 class PlatformEventsEntity extends IEntity {
   constructor({ uid, event, component, data }) {
