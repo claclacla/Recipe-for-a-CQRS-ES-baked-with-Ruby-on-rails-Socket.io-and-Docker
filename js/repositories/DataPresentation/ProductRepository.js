@@ -1,5 +1,5 @@
 const productModelFactory = require("./modelFactories/productModelFactory");
-const ProductEntity = require("../../entities/ProductEntity");
+const DataPresentationProductEntity = require("../../entities/DataPresentationProductEntity");
 const IRepository = require("../IRepository");
 const UID = require("../../lib/UID/UID");
 
@@ -16,31 +16,31 @@ class ProductRepository extends IRepository {
     this.connection = connection;
   }
 
-  async add(productEntity) {
-    if(productEntity instanceof ProductEntity === false) {
-      throw new Error("The parameter is not an instance of ProductEntity");
+  async add(dataPresentationProductEntity) {
+    if(dataPresentationProductEntity instanceof DataPresentationProductEntity === false) {
+      throw new Error("The parameter is not an instance of DataPresentationProductEntity");
     }
 
     let MongooseProduct = productModelFactory({ connection: this.connection });
 
     const mongooseProduct = new MongooseProduct({
-      uid: productEntity.uid,
-      name: productEntity.name,
-      price: productEntity.price
+      uid: dataPresentationProductEntity.uid,
+      name: dataPresentationProductEntity.name,
+      price: dataPresentationProductEntity.price
     });
 
     try {     
       const resMongooseProduct = await mongooseProduct.save();
 
-      const resProductEntity = new ProductEntity({
+      const resDataPresentationProductEntity = new DataPresentationProductEntity({
         uid: resMongooseProduct.uid,
         name: resMongooseProduct.name,
         price: resMongooseProduct.price
       });
 
-      return resProductEntity;
-    } catch (err) {      
-      throw new DatabaseError("ProductEntity has NOT been saved");
+      return resDataPresentationProductEntity;
+    } catch (err) {
+      throw new DatabaseError("DataPresentationProductEntity has NOT been saved");
     }    
   }
 

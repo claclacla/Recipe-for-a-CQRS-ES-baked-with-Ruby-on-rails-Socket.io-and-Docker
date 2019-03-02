@@ -13,7 +13,7 @@ const printError = require("../../../js/lib/printError");
 
 const mongooseConnect = require("../../../js/lib/Mongoose/connect");
 
-const ProductEntity = require("../../../js/entities/ProductEntity");
+const DataSourceProductEntity = require("../../../js/entities/DataSourceProductEntity");
 const DataSourceProductRepository = require("../../../js/repositories/DataSource/ProductRepository");
 
 (async () => {
@@ -64,7 +64,7 @@ const DataSourceProductRepository = require("../../../js/repositories/DataSource
   onCreatedProductPlatformEvent.subscribe(async function onCreatedProductPlatformEventSubscriber(msg) {
     let payload = JSON.parse(msg.content);
 
-    let productEntity = new ProductEntity({
+    let dataSourceProductEntity = new DataSourceProductEntity({
       name: payload.name,
       price: payload.price
     });
@@ -72,7 +72,7 @@ const DataSourceProductRepository = require("../../../js/repositories/DataSource
     let dataSourceProductRepository = new DataSourceProductRepository({ connection: dataSourceConnection });
 
     try {
-      let dataSourceProductEntity = await dataSourceProductRepository.add(productEntity);
+      await dataSourceProductRepository.add(dataSourceProductEntity);
 
       dataSourceTopic.publish({
         room: "product.created",

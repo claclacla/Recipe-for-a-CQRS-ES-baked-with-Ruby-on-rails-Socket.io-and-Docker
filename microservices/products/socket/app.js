@@ -11,7 +11,7 @@ const Routing = require('postcard-js/Routing');
 const printExecutionTime = require("../../../js/lib/printExecutionTime");
 const printError = require("../../../js/lib/printError");
 
-const ProductEntity = require("../../../js/entities/ProductEntity");
+const DataPresentationProductEntity = require("../../../js/entities/DataPresentationProductEntity");
 
 (async () => {
 
@@ -51,7 +51,8 @@ const ProductEntity = require("../../../js/entities/ProductEntity");
     console.log(msg.fields.routingKey, payload);
 
     if (msg.fields.routingKey === "product.created") {
-      let dataPresentationProductEntity = new ProductEntity({
+      let dataPresentationProductEntity = new DataPresentationProductEntity({
+        uid: payload.uid,
         name: payload.name,
         price: payload.price
       });

@@ -13,7 +13,8 @@ const printError = require("../../../js/lib/printError");
 
 const mongooseConnect = require("../../../js/lib/Mongoose/connect");
 
-const ProductEntity = require("../../../js/entities/ProductEntity");
+const DataSourceProductEntity = require("../../../js/entities/DataSourceProductEntity");
+const DataPresentationProductEntity = require("../../../js/entities/DataPresentationProductEntity");
 const DataPresentationProductRepository = require("../../../js/repositories/DataPresentation/ProductRepository");
 
 (async () => {
@@ -64,15 +65,22 @@ const DataPresentationProductRepository = require("../../../js/repositories/Data
   onDataSourceProductCreated.subscribe(async function onDataSourceProductCreated(msg) {
     let payload = JSON.parse(msg.content);
 
-    let dataSourceProductEntity = new ProductEntity({
+    // TODO: Create a mapper for the DataPresentationProductEntity
+
+    let dataSourceProductEntity = new DataSourceProductEntity({
       name: payload.name,
       price: payload.price
+    });
+
+    let dataPresentationProductEntity = new DataPresentationProductEntity({
+      name: dataSourceProductEntity.name,
+      price: dataSourceProductEntity.price
     });
 
     let dataPresentationProductRepository = new DataPresentationProductRepository({ connection: dataPresentationConnection });
 
     try {
-      let dataPresentationProductEntity = await dataPresentationProductRepository.add(dataSourceProductEntity);
+      await dataPresentationProductRepository.add(dataPresentationProductEntity);
 
       productsSocketTopic.publish({
         room: "product.created",
