@@ -52,40 +52,6 @@ class ProductRepository extends IRepository {
 
   }
 
-  mapGetFilters(filters) {
-    var getFilters = [];
-
-    if (filters === undefined) {
-      return undefined;
-    }
-
-    if (filters[this.GET_FILTER_SORT]) {
-      getFilters.push({ $sort: filters[this.GET_FILTER_SORT] });
-    }
-
-    if (filters[this.GET_FILTER_SKIP]) {
-      var skip = parseInt(filters[this.GET_FILTER_SKIP]);
-
-      if (isNaN(skip)) {
-        throw new Error("skip filter is NOT a valid number");
-      }
-
-      getFilters.push({ $skip: skip });
-    }
-
-    if (filters[this.GET_FILTER_LIMIT]) {
-      var limit = parseInt(filters[this.GET_FILTER_LIMIT]);
-
-      if (isNaN(limit)) {
-        throw new Error("limit filter is NOT a valid number");
-      }
-
-      getFilters.push({ $limit: limit });
-    }
-
-    return getFilters;
-  }
-
   get(match, filters) {
 
   }
