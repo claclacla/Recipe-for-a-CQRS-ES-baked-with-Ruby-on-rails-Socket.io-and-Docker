@@ -1,4 +1,5 @@
 //const heapdump = require("heapdump");
+const server = require('http').createServer();
 
 const APP_ENV = process.env.APP_ENV;
 
@@ -60,4 +61,16 @@ const DataPresentationProductEntity = require("../../../js/entities/DataPresenta
       //PubSub.publish("product.created", productEntity);
     }
   });
+
+  // Socket.io
+
+  const io = require('socket.io')(server, {
+    path: '/',
+    serveClient: false,
+    pingInterval: 10000,
+    pingTimeout: 5000,
+    cookie: false
+  });
+
+  server.listen(3000);
 })();

@@ -123,6 +123,8 @@ services:
       - rabbitmq_network
     volumes:
       - "${APP_FOLDER}:/usr/src/app"
+    ports:
+      - "3000:3000"
     links:
       - mongodb
       - rabbitmq
