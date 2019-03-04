@@ -72,6 +72,7 @@ services:
       - "${APP_FOLDER}/docker/dev/api-gateway/conf.d:/etc/nginx/conf.d"
     links:
       - api-server
+      - products-socket
 
   # Products
 
@@ -119,12 +120,11 @@ services:
       - MICROSERVICE_PATH=/usr/src/app/microservices/products/socket
       - APP_ENV=development
     networks:
+      - api_gateway_network
       - mongodb_network
       - rabbitmq_network
     volumes:
       - "${APP_FOLDER}:/usr/src/app"
-    ports:
-      - "3000:3000"
     links:
       - mongodb
       - rabbitmq
