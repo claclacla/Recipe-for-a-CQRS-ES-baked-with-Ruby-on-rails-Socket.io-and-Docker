@@ -7,11 +7,10 @@ RUN apt-get update \
 
 RUN sudo npm i -g heapdump@0.3.12 --unsafe-perm
 RUN npm i -g amqplib@0.5.3 \
-  assert@1.4.1 \
   mongoose@5.4.13 \
   postcard-js@1.0.0 \
-  socket.io@2.2.0 \
-  supertest@3.4.2 \ 
+  socket.io@2.2.0 \ 
+  pubsub-js@1.7.0 \
   nodemon@1.18.10
 
 WORKDIR /usr/src/app

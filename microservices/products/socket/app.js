@@ -1,5 +1,6 @@
 //const heapdump = require("heapdump");
 const server = require('http').createServer();
+const PubSub = require("pubsub-js");
 
 const APP_ENV = process.env.APP_ENV;
 
@@ -49,8 +50,6 @@ const DataPresentationProductEntity = require("../../../js/entities/DataPresenta
   onProduct.subscribe(async function onProduct(msg) {
     let payload = JSON.parse(msg.content);
 
-    console.log(msg.fields.routingKey, payload);
-
     if (msg.fields.routingKey === "product.created") {
       let dataPresentationProductEntity = new DataPresentationProductEntity({
         uid: payload.uid,
@@ -58,7 +57,8 @@ const DataPresentationProductEntity = require("../../../js/entities/DataPresenta
         price: payload.price
       });
 
-      //PubSub.publish("product.created", productEntity);
+      console.log(msg.fields.routingKey, payload);
+      PubSub.publish("product.created", dataPresentationProductEntity);
     }
   });
 
@@ -73,4 +73,14 @@ const DataPresentationProductEntity = require("../../../js/entities/DataPresenta
   });
 
   server.listen(3000);
+
+  io.on('connection', function onSocketIOConnection(socket) {
+    PubSub.subscribe("product.created", function onPubSubProductCreated(msg, dataPresentationProductEntity) {
+      console.log("Emit product created!");
+      
+      socket.emit('product.amount.updated', {
+        product: dataPresentationProductEntity
+      });
+    });
+  });
 })();

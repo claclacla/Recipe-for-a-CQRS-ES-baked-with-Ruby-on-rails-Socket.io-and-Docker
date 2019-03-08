@@ -1,5 +1,6 @@
-var supertest = require("supertest");
-var assert = require("assert");
+const supertest = require("supertest");
+const assert = require("assert");
+const io = require('socket.io-client');
 
 // Example: sudo docker exec -e apiaddress="http://api-gateway" -it DEVMachine mocha /usr/src/app/tests/integration/products/product.insert.js
 

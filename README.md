@@ -181,8 +181,7 @@ docker-compose 1.19.0+
 # Move to the main application folder
 cd /path-to-your-local/app
 
-# Products api server is used for experimentation with ruby on rails.
-# Build it with the ruby-on-rails-experimental image
+# Build the ruby-on-rails api server image
 sudo docker build -f docker/dev/api-server/Dockerfile . -t claclacla/api-server
 
 # Change the directory to the docker development 
