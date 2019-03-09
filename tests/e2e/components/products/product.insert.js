@@ -3,6 +3,7 @@ const assert = require("assert");
 const io = require('socket.io-client');
 
 const ProductFactory = require("../../factories/ProductFactory");
+const ProductService = require("../../services/ProductService");
 
 // Example: sudo docker exec -e apiaddress="http://api-gateway" -it DEVMachine mocha /usr/src/app/tests/e2e/components/products/product.insert.js
 
@@ -41,16 +42,17 @@ describe('Insert a product', function () {
 
       // Insert the new product
 
-      server
-        .post("/products")
-        .send({
-          "data": product 
-        })
-        .expect("Content-type", /json/)
-        .expect(202)
-        .end(function (err, res) {
-          if (err) throw err;
-        });
+      let productService = new ProductService({ server });
+
+      productService.insert({
+        product,
+        resolve: () => {
+
+        },
+        reject: (payload) => {
+
+        }
+      });
     });
   });
 });
