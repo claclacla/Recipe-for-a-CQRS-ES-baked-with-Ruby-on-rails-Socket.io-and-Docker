@@ -75,12 +75,15 @@ const DataPresentationProductEntity = require("../../../js/entities/DataPresenta
   server.listen(3000);
 
   io.on('connection', function onSocketIOConnection(socket) {
-    PubSub.subscribe("product.created", function onPubSubProductCreated(msg, dataPresentationProductEntity) {
-      console.log("Emit product created!");
-      
-      socket.emit('product.amount.updated', {
+    let onProductCreated = PubSub.subscribe("product.created", function onProductCreatedCallback(msg, dataPresentationProductEntity) {
+
+      socket.emit('product.created', {
         product: dataPresentationProductEntity
       });
+    });
+
+    socket.on('disconnect', function onSOcketIODisconnect() {      
+      PubSub.unsubscribe(onProductCreated);
     });
   });
 })();
