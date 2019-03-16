@@ -13,7 +13,6 @@ const server = supertest.agent(apiAddress);
 describe('Insert a product', function () {
   describe("When the payload contains valid data", function () {
     it('Should place a new product', function (done) {
-
       let product = ProductFactory.create({
         name: "Product 1",
         price: 4.5
@@ -27,6 +26,8 @@ describe('Insert a product', function () {
       });
 
       productsSocket.on('product.created', function (data) {
+        console.log("product.created");
+        
         assert(data.hasOwnProperty("product"), "The response data payload has NO product");
 
         let resProduct = data.product;
@@ -48,7 +49,7 @@ describe('Insert a product', function () {
       productService.insert({
         product,
         resolve: () => {
-
+          console.log("resolve");
         },
         reject: (payload) => {
 

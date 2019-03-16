@@ -6,17 +6,27 @@ module MessageBrokerClient
   module Topics
     class PlatformEventsScheduler  
       include Singleton
+
+      include Errors::MessageBrokerClient
   
       @topic = nil
 
       def create
-        messageBrokerClient = MessageBrokerClient::Connection.instance.get
+        begin
+          messageBrokerClient = MessageBrokerClient::Connection.instance.get
+        rescue MessageBrokerClient::ConnectionFailure
+          raise MessageBrokerClient::TopicCreation, "Topic platform-events-scheduler creation failure"
+        end  
 
         @topic = messageBrokerClient.createTopic(name: "platform-events-scheduler", routing:   Routing.Explicit)
       end
   
       def publish payload:
-        create if @topic.nil?
+        begin
+          create if @topic.nil?
+        rescue MessageBrokerClient::TopicCreation
+          raise MessageBrokerClient::Publish, "Topic platform-events-scheduler publish failure"
+        end
 
         @topic.publish(
           room: "platform-event.schedule",

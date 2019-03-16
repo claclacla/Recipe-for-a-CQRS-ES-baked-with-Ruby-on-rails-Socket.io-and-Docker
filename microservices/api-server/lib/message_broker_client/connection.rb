@@ -23,6 +23,7 @@ module MessageBrokerClient
       begin
         @messageBrokerClient.connect
       rescue PostcardConnectionRefused
+        @messageBrokerClient = nil 
         raise MessageBrokerClient::ConnectionFailure, "Message broker connection failure"
       end
 

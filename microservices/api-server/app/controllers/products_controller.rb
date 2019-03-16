@@ -28,7 +28,11 @@ class ProductsController < ApplicationController
       data: productParam
     }
 
-    MessageBrokerClient::Topics::PlatformEventsScheduler.instance.publish(payload: payload)
+    begin
+      MessageBrokerClient::Topics::PlatformEventsScheduler.instance.publish(payload: payload)
+    rescue MessageBrokerClient::Publish
+      render json: {}, status: :internal_server_error and return
+    end
 
     render json: {}, status: :accepted
   end
