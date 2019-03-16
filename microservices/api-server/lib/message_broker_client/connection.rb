@@ -1,25 +1,32 @@
+require 'singleton'
+
 require 'postcard_rb'
 require 'postcard_rb/errors/PostcardConnectionRefused'
 require 'postcard_rb/dispatchers/RabbitMQ/RabbitMQDispatcher'
 
 module MessageBrokerClient
-  class Initializer
+  class Connection
+    include Singleton
  
     include Errors::Application
     include Errors::MessageBrokerClient
+
+    @messageBrokerClient = nil
   
-    def self.connect host: nil
-      raise Application::MissingParameter, "Missing host parameter" if host.nil? 
-      dispatcher = RabbitMQDispatcher.new(host: host)
-      messageBrokerClient = PostcardRB.new(dispatcher: dispatcher)
+    def get
+      return @messageBrokerClient if !@messageBrokerClient.nil?
+
+      dispatcher = RabbitMQDispatcher.new(host: "rabbitmq")
+
+      @messageBrokerClient = PostcardRB.new(dispatcher: dispatcher)
       
       begin
-        messageBrokerClient.connect
+        @messageBrokerClient.connect
       rescue PostcardConnectionRefused
         raise MessageBrokerClient::ConnectionFailure, "Message broker connection failure"
       end
 
-      messageBrokerClient
+      @messageBrokerClient
     end
   end
 end

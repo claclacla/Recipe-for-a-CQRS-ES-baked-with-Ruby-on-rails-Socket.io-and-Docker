@@ -30,8 +30,21 @@ class ProductService {
 
   }
 
-  update() {
+  update({ product, resolve, reject }) {   
+    this.server
+      .put("/products")
+      .send({
+        "data": product
+      })
+      .expect("Content-type", /json/)
+      .expect(202)
+      .end(function (err, res) {
+        if (err) {
+          return reject(res.body);
+        }
 
+        resolve();
+      });
   }
 
   count() {

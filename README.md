@@ -154,6 +154,12 @@ rails g scaffold order number:integer date:datetime products:array
 
 --------------------------------------------------------------------------------
 
+### BUGS
+
+* On Ruby on rails reload caused by code update, the message broker client is not recreated. If the component controller publishes a new message, a NoMethodError (undefined method `publish' for nil:NilClass) is erased.
+
+--------------------------------------------------------------------------------
+
 ### Prerequisites
 
 What things you need to install the software
@@ -169,7 +175,7 @@ docker-compose 1.19.0+
 ### Testing
 
 ```
-#
+# 
 
 ```
 
