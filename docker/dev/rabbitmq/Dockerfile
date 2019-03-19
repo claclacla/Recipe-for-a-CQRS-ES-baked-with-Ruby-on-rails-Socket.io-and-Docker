@@ -10,5 +10,3 @@ RUN apt-get update \
   && wget https://raw.githubusercontent.com/rabbitmq/rabbitmq-management/v3.7.8/bin/rabbitmqadmin \
   && mv rabbitmqadmin /usr/local/bin/ \
   && chmod 744 /usr/local/bin/rabbitmqadmin
-
-CMD rabbitmq-server
