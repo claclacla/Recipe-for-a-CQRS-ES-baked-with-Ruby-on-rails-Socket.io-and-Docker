@@ -30,6 +30,8 @@ describe('Update a product', function () {
       });
 
       productsSocket.on('product.created', function (data) {
+        console.log("product created!");
+        
         assert(data.hasOwnProperty("product"), "The response data payload has NO product");
 
         let resProduct = data.product;
@@ -45,8 +47,11 @@ describe('Update a product', function () {
         product.name = "Product 2";
 
         productService.update({
+          uid: resProduct.uid,
           product,
           resolve: () => {
+            console.log("product update!");
+            
             productsSocket.disconnect();
             done();
           },
@@ -78,7 +83,7 @@ describe('Update a product', function () {
       productService.insert({
         product,
         resolve: () => {
-
+          console.log("product insert!");
         },
         reject: (payload) => {
 

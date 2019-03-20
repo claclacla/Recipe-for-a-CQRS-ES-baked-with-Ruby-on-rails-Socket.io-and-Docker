@@ -30,9 +30,9 @@ class ProductService {
 
   }
 
-  update({ product, resolve, reject }) {   
+  update({ uid, product, resolve, reject }) {   
     this.server
-      .put("/products")
+      .put("/products/" + uid)
       .send({
         "data": product
       })

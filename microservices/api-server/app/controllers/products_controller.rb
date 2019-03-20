@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :update, :destroy]
+  # before_action :set_product, only: [:show, :update, :destroy]
 
   include MessageBrokerClient
 
@@ -40,11 +40,14 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   
   def update
+    render json: {}, status: :accepted
+=begin
     if @product.update(product_params)
       render json: @product
     else
       render json: @product.errors, status: :unprocessable_entity
     end
+=end
   end
 
   # DELETE /products/1

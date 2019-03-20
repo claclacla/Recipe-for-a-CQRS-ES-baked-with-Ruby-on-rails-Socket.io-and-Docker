@@ -25,9 +25,7 @@ describe('Insert a product', function () {
         path: "/products/socket"
       });
 
-      productsSocket.on('product.created', function (data) {
-        console.log("product.created");
-        
+      productsSocket.on('product.created', function (data) {        
         assert(data.hasOwnProperty("product"), "The response data payload has NO product");
 
         let resProduct = data.product;
@@ -49,7 +47,7 @@ describe('Insert a product', function () {
       productService.insert({
         product,
         resolve: () => {
-          console.log("resolve");
+          
         },
         reject: (payload) => {
 
